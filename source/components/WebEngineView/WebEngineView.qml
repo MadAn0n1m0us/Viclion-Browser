@@ -42,9 +42,9 @@ WebEngineView {
         target: profileController
 
         function onCurrentProfileChanged(currentProfileData) {
+            profile.persistentStoragePath = currentProfileData.persistentStoragePath
             profile.cachePath = currentProfileData.cachePath
             profile.downloadPath = currentProfileData.downloadPath
-            profile.persistentStoragePath = currentProfileData.persistentStoragePath
         }
     }
 }
