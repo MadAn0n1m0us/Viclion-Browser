@@ -70,7 +70,6 @@ class Backend(QtCore.QObject):
         self.currentWebEngineProfile.setCachePath(currentWebEngineProfileData["cachePath"])
         self.currentWebEngineProfile.setDownloadPath(currentWebEngineProfileData["downloadPath"])
 
-
     @QtCore.pyqtSlot(result=str)
     def getCssCurrentTheme(self):
             return self.themeController.getCurrentTheme["css"]

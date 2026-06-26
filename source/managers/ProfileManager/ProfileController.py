@@ -43,7 +43,8 @@ class ProfileController(QtCore.QObject):
     def getCurrentProfileData(self):
         return self.model.getCurrentProfileData()
 
-    def setCurrentProfile(self, profileName):
+    @QtCore.pyqtSlot(str)
+    def setCurrentProfile(self, profileName: str):
         self.model.setCurrentProfile(profileName)
         currentProfileData = self.model.findProfileData(profileName)
         self.currentProfileDataChanged.emit(currentProfileData)
@@ -63,6 +64,10 @@ class ProfileController(QtCore.QObject):
 
         self.model.addToTheProfiles(profileData)
         self.profileCreated.emit()
+
+    @QtCore.pyqtSlot(str)
+    def deleteProfile(self, profileName: str):
+        self.model.deleteProfile(profileName)
     
     def findProfileData(self, profileName: str):
         return self.model.findProfileData(profileName)

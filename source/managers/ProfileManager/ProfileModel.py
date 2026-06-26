@@ -16,7 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import os
 import json
+import shutil
 
 import AppData
 
@@ -57,6 +59,34 @@ class ProfileModel(QtCore.QAbstractListModel):
 
         with open(AppData.PROFILES_DATA_LIST_FILE, "w", encoding="utf-8") as f:
             json.dump(self.profilesDataListFileContent, f, indent=4, ensure_ascii=False)
+
+    def deleteProfile(self, profileName: str):
+        profilesDataList = self.profilesDataListFileContent["profiles"]
+
+        if profileName not in profilesDataList:
+            return False
+
+        profileData = profilesDataList[profileName]
+
+        persistentStoragePath = profileData["persistentStoragePath"]
+        cachePath = profileData["cachePath"]
+
+        if persistentStoragePath and os.path.exists(persistentStoragePath):
+            shutil.rmtree(persistentStoragePath, ignore_errors=True)
+
+        if cachePath and os.path.exists(cachePath):
+            shutil.rmtree(cachePath, ignore_errors=True)
+
+        del profilesDataList[profileName]
+
+        with open(AppData.PROFILES_DATA_LIST_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.profilesDataListFileContent, f, indent=4, ensure_ascii=False)
+
+        if self.currentProfileName == profileName:
+            self.currentProfileName = ""
+            self.currentProfileData = None
+
+        return True 
 
     def findProfileData(self, profileName: str):
         profilesDataList = self.profilesDataListFileContent["profiles"]
