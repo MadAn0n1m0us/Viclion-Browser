@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Viclion Browser
 
 Copyright (C) 2026 MadAn0n1m0us
@@ -9,7 +8,6 @@ Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 See the LICENSE file for more details.
-=======
+
 # Viclion-Browser
 un navigateur web complet avec PyQt5 et QML
->>>>>>> 80d31570436b907a3fe0a547ebc2228f83c35d66
