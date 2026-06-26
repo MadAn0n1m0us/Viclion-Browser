@@ -1,14 +1,14 @@
 <<<<<<< HEAD
-# custom ignore folder
-default/
-test/
-
 =======
 >>>>>>> 80d31570436b907a3fe0a547ebc2228f83c35d66
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+
+# custom ignore folder
+profiles/
+test/
 
 # C extensions
 *.so

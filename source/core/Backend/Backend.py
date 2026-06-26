@@ -34,8 +34,6 @@ class Backend(QtCore.QObject):
     currentProfileChanged = QtCore.pyqtSignal()
     currentProfileDataChanged = QtCore.pyqtSignal(dict)
 
-    downloadRequested = QtCore.pyqtSignal()
-
     tabCreated = QtCore.pyqtSignal()
     themeChanged = QtCore.pyqtSignal()
 
