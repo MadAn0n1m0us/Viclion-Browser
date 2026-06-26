@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 # custom ignore folder
 default/
 test/
 
+=======
+>>>>>>> 80d31570436b907a3fe0a547ebc2228f83c35d66
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -219,4 +222,8 @@ marimo/_lsp/
 __marimo__/
 
 # Streamlit
+<<<<<<< HEAD
 .streamlit/secrets.toml
+=======
+.streamlit/secrets.toml
+>>>>>>> 80d31570436b907a3fe0a547ebc2228f83c35d66
