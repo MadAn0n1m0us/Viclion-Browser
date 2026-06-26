@@ -50,14 +50,15 @@ class ProfileController(QtCore.QObject):
         self.currentProfileDataChanged.emit(currentProfileData)
         self.currentProfileChanged.emit()
 
-    def createProfile(self, profileName: str, theme: str="Dark Theme"):
+    def createProfile(self, profileName: str):
         persistentStoragePath = f"{AppData.PROFILES_DATA_FOLDER}/{profileName}"
         cacheProfilePath = f"{persistentStoragePath}/cache"
+        currentThemeName = "Dark Theme"
 
         profileData = {
             "profileName": profileName,
             "persistentStoragePath": persistentStoragePath,
-            "theme": theme,
+            "themeName": currentThemeName,
             "cachePath": cacheProfilePath,
             "downloadPath": AppData.downloadDir
         }

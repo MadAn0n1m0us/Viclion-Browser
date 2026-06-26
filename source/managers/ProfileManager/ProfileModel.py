@@ -52,6 +52,7 @@ class ProfileModel(QtCore.QAbstractListModel):
         profileName = profileData["profileName"]
 
         profilesDataList[profileName] = {
+            "currentThemeName": profileData["currentThemeName"],
             "persistentStoragePath": profileData["persistentStoragePath"],
             "cachePath": profileData["cachePath"],
             "downloadPath": profileData["downloadPath"] 

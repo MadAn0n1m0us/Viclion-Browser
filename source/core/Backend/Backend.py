@@ -50,8 +50,6 @@ class Backend(QtCore.QObject):
         self.downloadController = DownloadController.DownloadController(self)
         self.languageController = LanguageController.LanguageController(self)
 
-        self.themeController.setCurrentTheme("Dark Theme")
-
         self.profileController.currentProfileChanged.connect(self.initCurrentWebEngineProfile)
 
         self.currentWebEngineProfile.installUrlSchemeHandler(
@@ -69,6 +67,8 @@ class Backend(QtCore.QObject):
         self.currentWebEngineProfile.setPersistentStoragePath(currentWebEngineProfileData["persistentStoragePath"])
         self.currentWebEngineProfile.setCachePath(currentWebEngineProfileData["cachePath"])
         self.currentWebEngineProfile.setDownloadPath(currentWebEngineProfileData["downloadPath"])
+
+        self.themeController.setCurrentTheme(c)
 
     @QtCore.pyqtSlot(result=str)
     def getCssCurrentTheme(self):
