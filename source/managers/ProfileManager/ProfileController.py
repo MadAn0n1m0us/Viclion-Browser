@@ -58,7 +58,7 @@ class ProfileController(QtCore.QObject):
         profileData = {
             "profileName": profileName,
             "persistentStoragePath": persistentStoragePath,
-            "themeName": currentThemeName,
+            "currentThemeName": currentThemeName,
             "cachePath": cacheProfilePath,
             "downloadPath": AppData.downloadDir
         }
