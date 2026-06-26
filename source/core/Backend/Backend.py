@@ -31,12 +31,6 @@ from source.managers.UrlSchemeManager import UrlSchemeController
 
 
 class Backend(QtCore.QObject):
-    currentProfileChanged = QtCore.pyqtSignal()
-    currentProfileDataChanged = QtCore.pyqtSignal(dict)
-
-    tabCreated = QtCore.pyqtSignal()
-    themeChanged = QtCore.pyqtSignal()
-
     def __init__(self):
         super().__init__()
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
@@ -56,12 +50,11 @@ class Backend(QtCore.QObject):
         self.downloadController = DownloadController.DownloadController(self)
         self.languageController = LanguageController.LanguageController(self)
 
-        self.profileController.currentProfileChanged.connect(self.currentProfileChanged.emit)
-        self.profileController.currentProfileDataChanged.connect(self.currentProfileDataChanged.emit)
-
-        self.tabController.tabCreated.connect(self.tabCreated.emit)
-
         self.themeController.setCurrentTheme("Dark Theme")
+
+        self.profileController.currentProfileChanged.connect(
+            lambda: self.initCurrentWebEngineProfile()
+        )
 
         self.currentWebEngineProfile.installUrlSchemeHandler(
             AppData.APP_URL_SHEME_NAME_BYTES, 

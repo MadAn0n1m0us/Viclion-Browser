@@ -27,7 +27,7 @@ from .ProfileModel import ProfileModel
 
 class ProfileController(QtCore.QObject):
     profileCreated = QtCore.pyqtSignal()
-    currentProfileChanged = QtCore.pyqtSignal(dict)
+    currentProfileChanged = QtCore.pyqtSignal()
     currentProfileDataChanged = QtCore.pyqtSignal(dict)
 
     def __init__(self, parent=None):
@@ -46,7 +46,8 @@ class ProfileController(QtCore.QObject):
     def setCurrentProfile(self, profileName):
         self.model.setCurrentProfile(profileName)
         currentProfileData = self.model.findProfileData(profileName)
-        self.currentProfileChanged.emit(currentProfileData)
+        self.currentProfileDataChanged.emit(currentProfileData)
+        self.currentProfileChanged.emit()
 
     def createProfile(self, profileName: str, theme: str="Dark Theme"):
         persistentStoragePath = f"{AppData.PROFILES_DATA_FOLDER}/{profileName}"
