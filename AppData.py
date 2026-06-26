@@ -20,7 +20,7 @@ import os
 import sys
 
 
-PROJECT_FOLDER = os.path.join(os.path.dirname(__file__)).replace(r"\\", "/")
+PROJECT_FOLDER = os.path.join(os.path.dirname(__file__)).replace("\\", "/")
 
 ARGV = sys.argv
 
@@ -37,7 +37,7 @@ PROFILES_DATA_LIST_FILE = f"{PROFILES_DATA_FOLDER}/profiles.json"
 COMPONENTS_FOLDER = f"{SOURCE_FOLDER}/components"
 HTML_FOLDER = f"{SOURCE_FOLDER}/html"
 
-downloadDir = os.path.join(os.path.expanduser("~"), "Downloads")
+downloadDir = os.path.join(os.path.expanduser("~"), "Downloads").replace("\\", "/")
 
 APP_URL_SHEME_NAME = "viclion"
 APP_URL_SHEME_NAME_BYTES = APP_URL_SHEME_NAME.encode()

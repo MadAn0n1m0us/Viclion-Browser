@@ -42,10 +42,12 @@ class Backend(QtCore.QObject):
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
         self.profileController = ProfileController.ProfileController(self)
 
-        self.defaultProfile = self.profileController.createProfile("guest")
-        self.profileController.setCurrentProfile("guest")
+        self.defaultProfile = self.profileController.createProfile("default")
+        self.profileController.setCurrentProfile("default")
 
         self.currentWebEngineProfile = QtWebEngineWidgets.QWebEngineProfile.defaultProfile()
+
+        self.initCurrentWebEngineProfile()
 
         self.extensionController = ExtensionController.ExtensionController(self)
         self.themeController = ThemeController.ThemeController(self)
@@ -69,6 +71,14 @@ class Backend(QtCore.QObject):
         self.currentWebEngineProfile.downloadRequested.connect(
             lambda downloadItem: self.downloadController.handleDownload(downloadItem)
         )
+
+    def initCurrentWebEngineProfile(self):
+        currentWebEngineProfileData = self.profileController.getCurrentProfileData
+
+        self.currentWebEngineProfile.setPersistentStoragePath(currentWebEngineProfileData["persistentStoragePath"])
+        self.currentWebEngineProfile.setCachePath(currentWebEngineProfileData["cachePath"])
+        self.currentWebEngineProfile.setDownloadPath(currentWebEngineProfileData["downloadPath"])
+
 
     @QtCore.pyqtSlot(result=str)
     def getCssCurrentTheme(self):
