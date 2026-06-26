@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General</title>
+    <style id="theme"></style>
+</head>
+<body>
+    <h1>General</h1>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="viclion://settings/appearences">Appearences</a></li>
+                <li><a href="viclion://settings/downloads">Downloads</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script type="text/javascript">
+        let backend = null;
+
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                backend = channel.objects.backend;
+                backend.getCssCurrentTheme().then(function(cssTheme) {
+                    document.getElementById("theme").textContent = cssTheme;
+                });
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <title>Appearences</title>
+    <style id="theme"></style>
+</head>
+<body>
+    <h1>Appearences</h1>
+
+    <div>
+        <div>
+            <label> Light <input type="radio" name="theme" value="Light Theme" onchange="setCurrentTheme(this.value)"></label>
+            <label> Dark <input type="radio" name="theme" value="Dark Theme" onchange="setCurrentTheme(this.value)"></label>
+            <label> System <input type="radio" name="theme" value="system" onchange="setCurrentTheme(this.value)"></label>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let backend = null;
+
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                backend = channel.objects.backend;
+                backend.getCssCurrentTheme().then(function(cssTheme) {
+                    document.getElementById("theme").textContent = cssTheme;
+                });
+            });
+        };
+
+        function setCurrentTheme(theme) {
+            backend.setCurrentTheme(theme)
+        }
+    </script>
+</body>
+</html>

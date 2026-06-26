@@ -1,0 +1,97 @@
+{
+    "global": {
+        "fontFamily": "Poppins",
+        "fontSize": 11,
+        "fontColor": "black"
+    },
+
+    "framelessWindow": {
+        "backgroundColor": "#f5f5f5",
+
+        "border": {
+            "width": 1,
+            "color": "#d0d0d0"
+        }
+    },
+
+    "titleBar": {
+        "backgroundColor": "#f5f5f5"
+    },
+
+    "titleBarButton": {
+        "backgroundColor": "#f5f5f5",
+        "hoverColor": "#e5e5e5",
+        "clickedColor": "#d5d5d5"
+    },
+
+    "tabButton": {
+        "backgroundColor": "#f5f5f5",
+        "hoverColor": "#e5e5e5",
+        "clickedColor": "#d5d5d5",
+
+        "radius": 2
+    },
+
+    "closeTabButton": {
+        "backgroundColor": "#f5f5f5",
+        "hoverColor": "#ffb3b3",
+        "clickedColor": "#ff9999",
+
+        "radius": 2
+    },
+
+    "addTabButton": {
+        "backgroundColor": "#f5f5f5",
+        "hoverColor": "#e5e5e5",
+        "clickedColor": "#d5d5d5",
+
+        "radius": 2
+    },
+
+    "navBar": {
+        "backgroundColor": "#ebebeb"
+    },
+
+    "navButton": {
+        "backgroundColor": "#ebebeb",
+        "hoverColor": "#dcdcdc",
+        "clickedColor": "#c8c8c8",
+
+        "radius": 2
+    },
+
+    "addressBar": {
+        "backgroundColor": "#ffffff",
+        "hoverColor": "#f0f0f0",
+
+        "radius": 2,
+
+        "border": {
+            "width": 2,
+            "color": "transparent",
+            "focusColor": "#4a90e2"
+        }
+    },
+
+    "popup": {
+        "backgroundColor": "#ffffff",
+        "radius": 2
+    },
+
+    "popupButton": {
+        "backgroundColor": "#ffffff",
+        "hoverColor": "#e5e5e5",
+        "clickedColor": "#d5d5d5"
+    },
+
+    "progressBar": {
+        "backgroundColor": "#d5d5d5",
+        "progressBackgroundColor": "#4a90e2",
+
+        "radius": 2
+    },
+
+    "webEngineView": {
+        "backgroundColor": "#151515"
+    }
+}

@@ -1,0 +1,15 @@
+2026/06/22-18:41:00.195 7f00 Reusing MANIFEST c:\Users\TCHAB\OneDrive\Bureau\Viclion Browser\profiles\\default\IndexedDB\https_www.tiktok.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/06/22-18:41:00.196 7f00 Recovering log #4
+2026/06/22-18:41:00.197 7f00 Reusing old log c:\Users\TCHAB\OneDrive\Bureau\Viclion Browser\profiles\\default\IndexedDB\https_www.tiktok.com_0.indexeddb.leveldb/000004.log 
+2026/06/22-18:41:14.669 6468 Level-0 table #8: started
+2026/06/22-18:41:14.680 6468 Level-0 table #8: 15991 bytes OK
+2026/06/22-18:41:14.695 6468 Delete type=0 #4
+2026/06/22-18:41:14.696 6468 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/06/22-18:41:14.696 6468 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x07"\x03\x00\x00\x00\x00\x00\x00\xf0?\x00\x01\x12\x007\x007\x009\x009\x006\x001\x004\x001\x007\x002\x006\x008\x000\x006\x009\x006\x004\x004' @ 3405 : 1
+2026/06/22-18:41:14.701 6468 Compacting 1@1 + 1@2 files
+2026/06/22-18:41:14.717 6468 Generated table #9@1: 495 keys, 8012 bytes
+2026/06/22-18:41:14.717 6468 Compacted 1@1 + 1@2 files => 8012 bytes
+2026/06/22-18:41:14.722 6468 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/06/22-18:41:14.723 6468 Delete type=2 #5
+2026/06/22-18:41:14.723 6468 Delete type=2 #8
+2026/06/22-18:41:14.730 6468 Manual compaction at level-1 from '\x00\x01\x07"\x03\x00\x00\x00\x00\x00\x00\xf0?\x00\x01\x12\x007\x007\x009\x009\x006\x001\x004\x001\x007\x002\x006\x008\x000\x006\x009\x006\x004\x004' @ 3405 : 1 .. (end); will stop at (end)

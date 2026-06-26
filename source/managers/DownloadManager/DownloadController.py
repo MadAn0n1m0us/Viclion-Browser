@@ -1,0 +1,76 @@
+# Viclion Browser
+# Copyright (C) 2026 MadAn0n1m0us
+#
+# This file is part of Viclion Browser.
+#
+# Viclion Browser is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Viclion Browser is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+import os
+import AppData as AppData
+
+from PyQt5 import QtCore
+
+from .DownloadModel import DownloadModel
+
+
+class DownloadController(QtCore.QObject):
+    downloadAdded = QtCore.pyqtSignal()
+
+    def __init__(self, parent=None):
+        self._parent = parent
+        super().__init__(self._parent)
+
+        self.model = DownloadModel()
+
+    @QtCore.pyqtSlot(QtCore.QObject)
+    def setModel(self, model):
+        self.model = model
+
+    @QtCore.pyqtProperty(QtCore.QObject, constant=True)
+    def getModel(self):
+        return self.model
+
+    @QtCore.pyqtSlot(QtCore.QObject)
+    def handleDownload(self, downloadItem):
+
+        self.downloadAdded.emit()
+
+        fileName = downloadItem.downloadFileName()
+
+        path = os.path.join(AppData.downloadDir, fileName)
+
+        downloadItemData = {
+            "fileName": fileName,
+            "path": path,
+            "state": "Downloading",
+            "totalBytes": 0,
+            "receivedBytes": 0,
+            "download": downloadItem
+        }
+
+        self.model.addToTheDownloads(downloadItemData)
+
+        row = len(self.model.downloadsItemInfoList) - 1
+
+        downloadItem.downloadProgress.connect(
+            lambda received, total: self.updateDownload(
+                row=row, received=received, total=total
+                )
+            )
+
+        downloadItem.accept()
+
+    @QtCore.pyqtSlot(int, int, int)
+    def updateDownload(self, row, received, total):
+        self.model.updateDownload(row, received, total)

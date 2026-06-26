@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <title>History</title>
+    <style id="theme"></style>
+</head>
+    <body>
+        <h1>History</h1>
+        <div id="historyList"></div>
+
+        <script type="text/javascript">
+            let backend = null;
+
+            function getFavicon(url) {
+                try {
+                    const domain = new URL(url).hostname;
+                    return `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+                } catch (e) {
+                    return "";
+                }
+            }
+
+            function renderHistory(list) {
+                const container = document.getElementById("historyList");
+                container.innerHTML = "";
+
+                list.slice().reverse().forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "history-item";
+
+                    div.innerHTML = `
+                        <img class="icon" src="${getFavicon(item.url)}">
+                        <div class="content">
+                            <div class="title">${item.title || 'No title'}</div>
+                            <div class="url">${item.url || ''}</div>
+                            <div class="date">${item.date || ''}</div>
+                        </div>
+                    `;
+
+                    div.onclick = function() {
+                        if (backend && backend.setWebEngineViewUrl) {
+                            backend.setWebEngineViewUrl(item.url);
+                        }
+                    };
+
+                    container.appendChild(div);
+                });
+            }
+
+            window.onload = function() {
+                new QWebChannel(qt.webChannelTransport, function(channel) {
+                    backend = channel.objects.backend;
+                    backend.getTheHistory().then(function(list) {
+                        renderHistory(list);
+                    });
+                    backend.getDownloadPath().then(function(path) {
+                        document.getElementById("downloadPathLabel").innerText = path;
+                    });
+                });
+            };
+        </script>
+    </body>
+</html>

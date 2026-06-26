@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Page Client HTML</title>
+    <!-- Chargement du script interne de Qt -->
+    <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
+</head>
+<body>
+
+    <h2>Interface HTML imbriquée dans du QML</h2>
+    <button onclick="appelerPython()">Interagir avec Python</button>
+    <p id="statut">Connexion en cours...</p>
+
+    <script type="text/javascript">
+        let backendPython = null;
+
+        // Initialisation de la communication dès le chargement de la page
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                // "cleHtml" correspond exactement au nom enregistré dans le main.qml
+                backendPython = channel.objects.cleHtml;
+                document.getElementById("statut").innerText = "Connecté au backend Python !";
+            });
+        }
+
+        function appelerPython() {
+            if (backendPython) {
+                // Appel asynchrone de la fonction Python avec une fonction de rappel (callback)
+                backendPython.recevoir_de_html("Hello depuis le HTML !", function(reponse) {
+                    alert("Réponse reçue : " + reponse);
+                });
+            } else {
+                alert("Le pont WebChannel n'est pas encore prêt.");
+            }
+        }
+    </script>
+</body>
+</html>

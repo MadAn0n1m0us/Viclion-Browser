@@ -1,0 +1,7 @@
+2026/06/22-18:40:34.105 7f00 Reusing MANIFEST c:\Users\TCHAB\OneDrive\Bureau\Viclion Browser\profiles\\default\IndexedDB\https_www.tiktok.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/06/22-18:40:34.106 7f00 Recovering log #3
+2026/06/22-18:40:34.114 7f00 Reusing old log c:\Users\TCHAB\OneDrive\Bureau\Viclion Browser\profiles\\default\IndexedDB\https_www.tiktok.com_0.indexeddb.leveldb/000003.log 
+2026/06/22-18:40:51.305 6468 Level-0 table #5: started
+2026/06/22-18:40:51.427 6468 Level-0 table #5: 32792 bytes OK
+2026/06/22-18:40:51.442 6468 Delete type=0 #3
+2026/06/22-18:40:51.462 6468 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

@@ -1,0 +1,103 @@
+{
+    "global": {
+        "fontFamily": "Poppins",
+        "fontSize": 11,
+        "fontColor": "white"
+    },
+
+    "framelessWindow": {
+        "backgroundColor": "#151515",
+
+        "border": { 
+            "width": 1, 
+            "color": "#303030" 
+        }
+    },
+
+    "titleBar": {
+        "backgroundColor": "#151515"
+    },
+
+    "titleBarButton": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#232323",
+        "clickedColor": "#353535"
+    },
+
+    "tabBar": {
+        "backgroundColor": "#151515"
+    },
+
+    "tabButton": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#303030",
+        "clickedColor": "#454545",
+
+        "radius": 2
+    },
+
+    "closeTabButton": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#606060",
+        "clickedColor": "#757575",
+
+        "radius": 2
+    },
+
+    "addTabButton": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#303030",
+        "clickedColor": "#454545",
+
+        "radius": 2
+    },
+
+    "navBar": {
+        "backgroundColor": "#454545"
+    },
+
+    "navButton": {
+        "backgroundColor": "#454545",
+        "hoverColor": "#606060",
+        "clickedColor": "#757575",
+
+        "radius": 2
+    },
+
+    "addressBar": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#303030",
+
+        "radius": 2,
+
+        "border": {
+            "width": 2,
+            "color": "transparent",
+            "focusColor": "lightblue"
+        }
+    },
+
+    "popup": {
+        "backgroundColor": "#151515",
+        "radius": 2
+    },
+
+    "popupButton": {
+        "backgroundColor": "#151515",
+        "hoverColor": "#303030",
+        "clickedColor": "#454545",
+
+        "radius": 2
+    },
+
+    "progressBar": {
+        "backgroundColor": "#606060",
+        "progressBackgroundColor": "lightblue",
+
+        "radius": 2
+    },
+
+    "webEngineView": {
+        "backgroundColor": "#151515"
+    }
+}

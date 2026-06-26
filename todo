@@ -1,0 +1,29 @@
+### WHAT I HAVE TO DO BEFORE POSTING ###
+
+# this is in the croissant order
+
+1. factorize codes
+
+2. change the logic behind some managers: 
+
+    - general: save data in json files
+    - ThemeManager: i think about it
+    - TabManager: i want that it is the webEngineView in QML which is save
+    - backend: add function "send" and "receive"
+
+3. correct errors and bugs:
+
+    * Errors
+
+        - QThread: Destroyed while thread is still running
+
+    * Bugs
+
+        - suggestion popup open without nothing inside while you start searching
+        - not directly html pages styling
+
+4. add some features
+
+    - fully completed managers and internal html pages
+    - movable, detachable and draggable tabs
+    - have and executable
