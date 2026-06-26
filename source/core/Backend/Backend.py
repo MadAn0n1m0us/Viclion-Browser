@@ -52,9 +52,7 @@ class Backend(QtCore.QObject):
 
         self.themeController.setCurrentTheme("Dark Theme")
 
-        self.profileController.currentProfileChanged.connect(
-            lambda: self.initCurrentWebEngineProfile()
-        )
+        self.profileController.currentProfileChanged.connect(self.initCurrentWebEngineProfile)
 
         self.currentWebEngineProfile.installUrlSchemeHandler(
             AppData.APP_URL_SHEME_NAME_BYTES, 
