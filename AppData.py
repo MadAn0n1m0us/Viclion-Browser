@@ -20,7 +20,7 @@ import os
 import sys
 
 
-PROJECT_FOLDER = os.path.join(os.path.dirname(__file__))
+PROJECT_FOLDER = os.path.join(os.path.dirname(__file__)).replace(r"\\", "/")
 
 ARGV = sys.argv
 

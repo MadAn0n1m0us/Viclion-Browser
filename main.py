@@ -21,7 +21,7 @@ import sys
 
 import AppData as AppData
 
-from PyQt5 import QtQml, QtGui, QtWebEngine, QtWebEngineCore, QtWebEngineWidgets
+from PyQt5 import QtQml, QtGui, QtWebEngine, QtWebEngineCore
 
 from source.core.FramelessWindowManager import FramelessWindowController
 from source.core.Backend import Backend
