@@ -36,12 +36,9 @@ class Backend(QtCore.QObject):
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
         self.profileController = ProfileController.ProfileController(self)
 
-        self.defaultProfile = self.profileController.createProfile("default")
         self.profileController.setCurrentProfile("default")
 
         self.currentWebEngineProfile = QtWebEngineWidgets.QWebEngineProfile.defaultProfile()
-
-        self.initCurrentWebEngineProfile()
 
         self.extensionController = ExtensionController.ExtensionController(self)
         self.themeController = ThemeController.ThemeController(self)
@@ -49,6 +46,8 @@ class Backend(QtCore.QObject):
         self.historyController = HistoryController.HistoryController(self)
         self.downloadController = DownloadController.DownloadController(self)
         self.languageController = LanguageController.LanguageController(self)
+
+        self.initCurrentWebEngineProfile()
 
         self.profileController.currentProfileChanged.connect(self.initCurrentWebEngineProfile)
 
