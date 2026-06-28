@@ -34,7 +34,7 @@ class TabModel(QtCore.QAbstractListModel):
         super().__init__(self._parent)
         
         self._tabs = []
-        self.__currentIndex = -1
+        self.__currentIndex = 0
 
     @QtCore.pyqtProperty(int, notify=tabCountChanged)
     def tabCount(self):
