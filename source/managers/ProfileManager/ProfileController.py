@@ -27,8 +27,11 @@ from .ProfileModel import ProfileModel
 
 class ProfileController(QtCore.QObject):
     profileCreated = QtCore.pyqtSignal()
-    currentProfileChanged = QtCore.pyqtSignal()
+    profileDeleted = QtCore.pyqtSignal()
+
+    currentProfileChanged = QtCore.pyqtSignal(dict)
     currentProfileDataChanged = QtCore.pyqtSignal(dict)
+
 
     def __init__(self, parent=None):
         self._parent = parent
@@ -47,8 +50,7 @@ class ProfileController(QtCore.QObject):
     def setCurrentProfile(self, profileName: str):
         self.model.setCurrentProfile(profileName)
         currentProfileData = self.model.findProfileData(profileName)
-        self.currentProfileDataChanged.emit(currentProfileData)
-        self.currentProfileChanged.emit()
+        self.currentProfileChanged.emit(currentProfileData)
 
     def createProfile(self, profileName: str):
         persistentStoragePath = f"{AppData.PROFILES_DATA_FOLDER}/{profileName}"
@@ -69,6 +71,7 @@ class ProfileController(QtCore.QObject):
     @QtCore.pyqtSlot(str)
     def deleteProfile(self, profileName: str):
         self.model.deleteProfile(profileName)
+        self.profileDeleted.emit()
     
     def findProfileData(self, profileName: str):
         return self.model.findProfileData(profileName)

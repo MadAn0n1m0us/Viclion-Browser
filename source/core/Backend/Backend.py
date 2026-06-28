@@ -31,6 +31,8 @@ from source.managers.UrlSchemeManager import UrlSchemeController
 
 
 class Backend(QtCore.QObject):
+    currentProfileChanged = QtCore.pyqtSignal(dict)
+
     def __init__(self):
         super().__init__()
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
@@ -47,27 +49,29 @@ class Backend(QtCore.QObject):
         self.downloadController = DownloadController.DownloadController(self)
         self.languageController = LanguageController.LanguageController(self)
 
-        self.initCurrentWebEngineProfile()
 
-        self.profileController.currentProfileChanged.connect(self.initCurrentWebEngineProfile)
+        self.initCurrentWebEngineProfile(self.profileController.getCurrentProfileData)
+
 
         self.currentWebEngineProfile.installUrlSchemeHandler(
             AppData.APP_URL_SHEME_NAME_BYTES, 
             self.urlSchemeController
         )
 
+        self.profileController.currentProfileChanged.connect(lambda currentProfileData: self.currentProfileChanged.emit(currentProfileData))
+
+        self.currentProfileChanged.connect(lambda currentProfileData: self.initCurrentWebEngineProfile(currentProfileData))
+
         self.currentWebEngineProfile.downloadRequested.connect(
             lambda downloadItem: self.downloadController.handleDownload(downloadItem)
         )
 
-    def initCurrentWebEngineProfile(self):
-        currentWebEngineProfileData = self.profileController.getCurrentProfileData
+    def initCurrentWebEngineProfile(self, profileData):
+        self.currentWebEngineProfile.setPersistentStoragePath(profileData["persistentStoragePath"])
+        self.currentWebEngineProfile.setCachePath(profileData["cachePath"])
+        self.currentWebEngineProfile.setDownloadPath(profileData["downloadPath"])
 
-        self.currentWebEngineProfile.setPersistentStoragePath(currentWebEngineProfileData["persistentStoragePath"])
-        self.currentWebEngineProfile.setCachePath(currentWebEngineProfileData["cachePath"])
-        self.currentWebEngineProfile.setDownloadPath(currentWebEngineProfileData["downloadPath"])
-
-        self.themeController.setCurrentTheme(currentWebEngineProfileData["currentThemeName"])
+        self.themeController.setCurrentTheme(profileData["currentThemeName"])
 
     @QtCore.pyqtSlot(result=str)
     def getCssCurrentTheme(self):

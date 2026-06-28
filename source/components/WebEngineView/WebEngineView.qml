@@ -41,7 +41,7 @@ WebEngineView {
     Connections {
         target: profileController
 
-        function onCurrentProfileDataChanged(currentProfileData) {
+        function onCurrentProfileChanged(currentProfileData) {
             profile.persistentStoragePath = currentProfileData.persistentStoragePath
             profile.cachePath = currentProfileData.cachePath
             profile.downloadPath = currentProfileData.downloadPath
