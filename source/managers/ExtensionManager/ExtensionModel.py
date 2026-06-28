@@ -20,5 +20,19 @@ from PyQt5 import QtCore
 
 
 class ExtensionModel(QtCore.QAbstractListModel):
-    def __init__(self, backend=None):
-        super().__init__(parent)
+    def __init__(self, parent, api: QtCore.QObject):
+        self._parent = parent
+        self.api: QtCore.QObject = api
+        super().__init__(self._parent)
+
+    def addToTheExtensions(self):
+        pass
+    
+    def DeleteToTheExtensions(self):
+        pass
+
+    def setEnable(self):
+        pass
+
+    def setDisable(self):
+        pass

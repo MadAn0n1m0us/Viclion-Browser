@@ -20,6 +20,19 @@ from PyQt5 import QtCore
 
 
 class ExtensionController(QtCore.QObject):
-    def __init__(self, parent=None):
+    def __init__(self, parent, api: QtCore.QObject):
         self._parent = parent
+        self.api: QtCore.QObject = api
         super().__init__(self._parent)
+
+    def install(self):
+        pass
+
+    def uninstall(self):
+        pass
+
+    def setEnable(self):
+        pass
+
+    def setDisable(self):
+        pass
