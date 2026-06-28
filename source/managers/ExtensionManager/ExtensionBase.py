@@ -48,6 +48,9 @@ class ExtensionBase(QObject):
     def id(self): 
         return self.manifest.get("id", "")
     @property
+    def icon(self): 
+        return self.manifest.get("icon", "")
+    @property
     def name(self): 
         return self.manifest.get("name", "")
     @property
@@ -59,9 +62,6 @@ class ExtensionBase(QObject):
     @property
     def author(self): 
         return self.manifest.get("author", "")
-    @property
-    def icon(self): 
-        return self.manifest.get("icon", "")
 
     # ── Cycle de vie (à surcharger dans chaque extension) ────
     def onInstall(self):
