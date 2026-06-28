@@ -41,9 +41,11 @@ HTML_FOLDER = f"{SOURCE_FOLDER}/html"
 
 downloadDir = os.path.join(os.path.expanduser("~"), "Downloads").replace("\\", "/")
 
-APP_URL_SHEME_NAME = "viclion"
-APP_URL_SHEME_NAME_BYTES = APP_URL_SHEME_NAME.encode()
-APP_URL_SHEME = f"{APP_URL_SHEME_NAME}://"
+APP_URL_SCHEME_NAME = "viclion"
+APP_URL_SCHEME_NAME_BYTES = APP_URL_SCHEME_NAME.encode()
+APP_URL_SCHEME = f"{APP_URL_SCHEME_NAME}://"
+
+app_url_scheme_default_port = 1515
 
 currentWebEngineViewUrl = "viclion://home/index"
 

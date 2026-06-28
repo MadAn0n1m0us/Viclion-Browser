@@ -20,9 +20,9 @@ from PyQt5 import QtCore
 
 
 class ExtensionController(QtCore.QObject):
-    def __init__(self, parent, api: QtCore.QObject):
+    def __init__(self, api: QtCore.QObject, parent=None):
         self._parent = parent
-        self.api: QtCore.QObject = api
+        self.api = api
         super().__init__(self._parent)
 
     def install(self):

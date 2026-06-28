@@ -36,7 +36,7 @@ class HistoryController(QtCore.QObject):
     @QtCore.pyqtSlot(str, str, str)
     def addToTheHistory(self, title: str, url: str, date: str):
         try:
-            if not AppData.APP_URL_SHEME in url:
+            if not AppData.APP_URL_SCHEME in url:
                 self.model.addToTheHistory(title, url, date)
         except:
             traceback.print_exc()

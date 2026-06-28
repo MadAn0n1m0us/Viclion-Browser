@@ -40,7 +40,7 @@ class Backend(QtCore.QObject):
 
         self.currentWebEngineProfile = QtWebEngineWidgets.QWebEngineProfile.defaultProfile()
 
-        self.extensionController = ExtensionController.ExtensionController(self)
+        self.extensionController = ExtensionController.ExtensionController(api=self)
         self.themeController = ThemeController.ThemeController(self)
         self.tabController = TabController.TabController(self)
         self.historyController = HistoryController.HistoryController(self)
@@ -52,7 +52,7 @@ class Backend(QtCore.QObject):
 
 
         self.currentWebEngineProfile.installUrlSchemeHandler(
-            AppData.APP_URL_SHEME_NAME_BYTES, 
+            AppData.APP_URL_SCHEME_NAME_BYTES, 
             self.urlSchemeController
         )
 
@@ -86,7 +86,7 @@ class Backend(QtCore.QObject):
 
     @QtCore.pyqtSlot(str)
     def setWebEngineViewUrl(self, url: str):
-        if url.startswith(f"{AppData.APP_URL_SHEME_NAME}://"):
+        if url.startswith(f"{AppData.APP_URL_SCHEME_NAME}://"):
             finalUrl = url
         elif url.startswith("http://") or url.startswith("https://"):
             finalUrl = url

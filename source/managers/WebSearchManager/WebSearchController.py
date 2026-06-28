@@ -57,7 +57,7 @@ class WebSearchController(QtCore.QObject):
         if not text:
             self._model.setSuggestions([])
             return
-        if text.startswith(f"{AppData.APP_URL_SHEME_NAME}://"):
+        if text.startswith(f"{AppData.APP_URL_SCHEME_NAME}://"):
             return
         self.searchRequested.emit(text)
 

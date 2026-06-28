@@ -32,9 +32,11 @@ from source.managers.WebSearchManager import WebSearchController
 if __name__ == "__main__":
     os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-service-worker"
 
-    scheme = QtWebEngineCore.QWebEngineUrlScheme(AppData.APP_URL_SHEME_NAME_BYTES)
+    scheme = QtWebEngineCore.QWebEngineUrlScheme(AppData.APP_URL_SCHEME_NAME_BYTES)
     
-    scheme.setSyntax(QtWebEngineCore.QWebEngineUrlScheme.Syntax.Host)
+    scheme.setSyntax(QtWebEngineCore.QWebEngineUrlScheme.Syntax.HostAndPort)
+    scheme.setDefaultPort(AppData.app_url_scheme_default_port)
+
     scheme.setFlags(
         QtWebEngineCore.QWebEngineUrlScheme.Flag.SecureScheme |
         QtWebEngineCore.QWebEngineUrlScheme.Flag.LocalScheme | 
