@@ -31,8 +31,6 @@ from source.managers.UrlSchemeManager import UrlSchemeController
 
 
 class Backend(QtCore.QObject):
-    currentProfileChanged = QtCore.pyqtSignal(dict)
-
     def __init__(self):
         super().__init__()
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
@@ -58,9 +56,9 @@ class Backend(QtCore.QObject):
             self.urlSchemeController
         )
 
-        self.profileController.currentProfileChanged.connect(lambda currentProfileData: self.currentProfileChanged.emit(currentProfileData))
-
-        self.currentProfileChanged.connect(lambda currentProfileData: self.initCurrentWebEngineProfile(currentProfileData))
+        self.profileController.currentProfileChanged.connect(
+            lambda currentProfileData: self.initCurrentWebEngineProfile(currentProfileData)
+        )
 
         self.currentWebEngineProfile.downloadRequested.connect(
             lambda downloadItem: self.downloadController.handleDownload(downloadItem)

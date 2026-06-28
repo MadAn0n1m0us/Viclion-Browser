@@ -70,11 +70,11 @@ if __name__ == "__main__":
     engine.addImportPath(AppData.COMPONENTS_FOLDER)
     engine.load(os.path.join(AppData.SOURCE_FOLDER, "main.qml"))
 
-    app.aboutToQuit.connect(engine.deleteLater)
-
     if not engine.rootObjects():
         sys.exit(-1)
 
     backend.createTab()
+
+    app.aboutToQuit.connect(engine.deleteLater)
 
     sys.exit(app.exec())
