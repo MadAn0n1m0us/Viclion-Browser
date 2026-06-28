@@ -38,8 +38,7 @@ class Backend(QtCore.QObject):
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
         self.profileController = ProfileController.ProfileController(self)
 
-        self.profileController.createProfile("guest")
-        self.profileController.setCurrentProfile("guest")
+        self.profileController.setCurrentProfile("default")
 
         self.currentWebEngineProfile = QtWebEngineWidgets.QWebEngineProfile.defaultProfile()
 
