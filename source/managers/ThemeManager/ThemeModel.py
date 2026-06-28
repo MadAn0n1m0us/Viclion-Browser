@@ -18,7 +18,7 @@
 
 import os
 import json
-import AppData as AppData
+import AppData
 
 from PyQt5 import QtCore
 

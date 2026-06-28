@@ -19,7 +19,7 @@
 import os
 import sys
 
-import AppData as AppData
+import AppData
 
 from PyQt5 import QtQml, QtGui, QtWebEngine, QtWebEngineCore
 
