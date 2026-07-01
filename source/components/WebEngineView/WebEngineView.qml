@@ -3,7 +3,7 @@ import QtQuick 2.15
 import QtWebEngine 1.9
 
 
-WebEngineView {
+CustomWebEngineView {
     settings.webGLEnabled: false
     settings.showScrollBars: false
     settings.autoLoadImages: true

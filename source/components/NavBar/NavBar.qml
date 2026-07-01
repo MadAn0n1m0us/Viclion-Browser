@@ -130,7 +130,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "./assets/back_icon.png",
                 "func": function() {
-                    browserPageWebEngineView.goBack()
+                    browserPageCustomWebEngineView.goBack()
                 }
             })
 
@@ -138,7 +138,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "./assets/forward_icon.png",
                 "func": function() {
-                    browserPageWebEngineView.goForward()
+                    browserPageCustomWebEngineView.goForward()
                 }
             })
 
@@ -146,7 +146,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "",
                 "func": function() {
-                    browserPageWebEngineView.reload()
+                    browserPageCustomWebEngineView.reload()
                 }
             })
 
@@ -167,7 +167,7 @@ Rectangle {
 
             AddressBar {
                 id: addressBar
-                text: browserPageWebEngineView.url.toString()
+                text: browserPageCustomWebEngineView.url.toString()
                 Layout.fillWidth: true
 
                 onTextChanged: {
@@ -175,7 +175,7 @@ Rectangle {
                 }
 
                 onAccepted: {
-                    backend.setWebEngineViewUrl(addressBar.text)
+                    backend.setCustomWebEngineViewUrl(addressBar.text)
                     addressBar.isFocus = false
                     suggestionBoxPopup.close()
                 }
@@ -238,38 +238,38 @@ Rectangle {
     /* -------------------- CONNECTIONS -------------------- */
 
     Connections {
-        target: browserPageWebEngineView
+        target: browserPageCustomWebEngineView
 
         function onLoadingChanged(webEngineLoadingInfo) {
-            leftSideNavBarLayout.backButton.enabled = browserPageWebEngineView.canGoBack
-            leftSideNavBarLayout.forwardButton.enabled = browserPageWebEngineView.canGoForward
+            leftSideNavBarLayout.backButton.enabled = browserPageCustomWebEngineView.canGoBack
+            leftSideNavBarLayout.forwardButton.enabled = browserPageCustomWebEngineView.canGoForward
 
             switch (webEngineLoadingInfo.status) {
 
-                case WebEngineView.LoadStartedStatus:
+                case CustomWebEngineView.LoadStartedStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/close_icon.svg"
                     leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageWebEngineView.stop()
+                        browserPageCustomWebEngineView.stop()
                     }
                     break
 
-                case WebEngineView.LoadSucceededStatus:
+                case CustomWebEngineView.LoadSucceededStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageWebEngineView.reload()
+                        browserPageCustomWebEngineView.reload()
                     }
 
                     historyController.addToTheHistory(
-                        browserPageWebEngineView.title,
-                        browserPageWebEngineView.url.toString(),
+                        browserPageCustomWebEngineView.title,
+                        browserPageCustomWebEngineView.url.toString(),
                         new Date().toISOString()
                     )
                     break
 
-                case WebEngineView.LoadFailedStatus:
+                case CustomWebEngineView.LoadFailedStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageWebEngineView.reload()
+                        browserPageCustomWebEngineView.reload()
                     }
                     break
             }
@@ -345,7 +345,7 @@ Rectangle {
                 }
 
                 onClicked: {
-                    backend.setWebEngineViewUrl(model.text)
+                    backend.setCustomWebEngineViewUrl(model.text)
                     addressBar.isFocus = false
                     suggestionBoxPopup.close()
                 }
@@ -357,7 +357,7 @@ Rectangle {
         id: downloadPopup
 
         width: 360
-        height: browserPageWebEngineView.height
+        height: browserPageCustomWebEngineView.height
 
         x: rightSideNavBarLayout.x - downloadPopup.width + rightSideNavBarLayout.downloadButton.width + navBarLayout.anchors.margins
         y: navBar.height
@@ -504,8 +504,8 @@ Rectangle {
                 "iconSource": "./assets/anonymous_icon.png",
                 "text": "set in anonymous mode",
                 "func": function() {
-                    browserPageWebEngineView.profile.offTheRecord = true
-                    browserPageWebEngineView.reload()
+                    browserPageCustomWebEngineView.profile.offTheRecord = true
+                    browserPageCustomWebEngineView.reload()
                 }  
             })
 
@@ -514,7 +514,7 @@ Rectangle {
                 "iconSource": "./assets/history_icon.png",
                 "text": "history",
                 "func": function() {
-                    backend.setWebEngineViewUrl("viclion://history/history/")
+                    backend.setCustomWebEngineViewUrl("viclion://history/history/")
                 }  
             })
 
@@ -523,7 +523,7 @@ Rectangle {
                 "iconSource": "./assets/settings_icon.png",
                 "text": "Settings",
                 "func": function() {
-                    backend.setWebEngineViewUrl("viclion://settings/general/")
+                    backend.setCustomWebEngineViewUrl("viclion://settings/general/")
                 }  
             })
 

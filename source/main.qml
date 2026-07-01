@@ -9,7 +9,7 @@ import FramelessWindow 1.0
 import TitleBar 1.0
 import TabBar 1.0
 import NavBar 1.0
-import WebEngineView 1.0
+import CustomWebEngineView 1.0
 
 import WebSearchManager 1.0
 
@@ -86,28 +86,28 @@ FramelessWindow {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
-                            WebEngineView {
-                                id: browserPageWebEngineView
+                            CustomWebEngineView {
+                                id: browserPageCustomWebEngineView
 
-                                url: browserPageWebEngineViewBaseUrl
+                                url: browserPageCustomWebEngineViewBaseUrl
 
                                 webChannel: browserPageWebChannel
-                                devToolsView: browserPageWebEngineViewDevTools
+                                devToolsView: browserPageCustomWebEngineViewDevTools
 
                                 SplitView.fillWidth: true
                             }
 
-                            WebEngineView {
-                                id: browserPageWebEngineViewDevTools
+                            CustomWebEngineView {
+                                id: browserPageCustomWebEngineViewDevTools
                                 visible: false
                             }
 
                             Connections {
-                                target: browserPageWebEngineView
+                                target: browserPageCustomWebEngineView
 
                                 function onLoadingChanged(webEngineLoadingInfo) {
-                                    tabController.setTabIconPath(index, browserPageWebEngineView.icon)
-                                    tabController.setTabTitle(index, browserPageWebEngineView.title)
+                                    tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
+                                    tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
                                 }
                             }
                         }

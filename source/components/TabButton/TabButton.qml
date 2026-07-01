@@ -74,33 +74,16 @@ Rectangle {
 
         spacing: 0
 
-        Item {
-            id: imageItem
+        Image {
+            id: image
+
+            source: tabButtonImageSource
 
             width: 18
             height: 18
 
-            Layout.alignment: Qt.AlignLeft
-
-            Image {
-                id: image
-
-                source: tabButtonImageSource
-
-                width: imageItem.width
-                height: imageItem.height
-
-                sourceSize.width: image.width
-                sourceSize.height: image.height
-
-                fillMode: Image.PreserveAspectFit
-            }
-
-            ColorOverlay {
-                anchors.fill: image
-                source: image
-                color: themeController.getCurrentTheme.qss.global.fontColor
-            }   
+            sourceSize.width: 18
+            sourceSize.height: 18
         }
 
         Item {

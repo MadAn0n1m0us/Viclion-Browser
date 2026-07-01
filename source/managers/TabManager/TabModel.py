@@ -122,14 +122,14 @@ class TabModel(QtCore.QAbstractListModel):
             self.__currentIndex = index
 
     def setTabIconPath(self, index: int, iconPath: str):
-        if 0 <= index < len(self._tabs):
+        if 0 <= index <= len(self._tabs):
             self._tabs[self.__currentIndex]["iconPath"] = iconPath
 
             _index = self.index(index)
             self.dataChanged.emit(_index, _index, [self.tabIconPathRole]) 
 
     def setTabTitle(self, index: int, title: str):
-        if 0 <= index < len(self._tabs):
+        if 0 <= index <= len(self._tabs):
             self._tabs[self.__currentIndex]["title"] = title
 
             _index = self.index(index)    
