@@ -25,18 +25,17 @@ WebEngineView {
 
     backgroundColor: themeController.getCurrentTheme.qss.webEngineView.backgroundColor
 
-    onNavigationRequested: function(navigationRequest) {
-        if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation & ! WebEngineNavigationRequest.ReloadNavigation) {
-            var navRequestWebEngineView = WebEngineView
-            navRequestWebEngineView.url = navigationRequest.url
-
-            tabController.createTab(
-                navRequestWebEngineView.icon,
-                navRequestWebEngineView.title,
-                navRequestWebEngineView
-            )
-        }
-    }
+    // onNavigationRequested: function(navigationRequest) {
+    //     if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation) {
+    //         var component = Qt.createComponent("CustomWebEngineView.qml")
+    //         if (component.status === Component.Ready) {
+    //             var navRequestWebEngineView = component.createObject(parent)
+    //             navRequestWebEngineView.url = navigationRequest.url
+    //             tabController.createTab("", "", navRequestWebEngineView)
+    //         }
+    //     }
+    //     navigationRequest.action = WebEngineNavigationRequest.AcceptRequest
+    // }
 
     onRenderProcessTerminated: function(status, exitCode) {
         console.log("Render process terminated")
