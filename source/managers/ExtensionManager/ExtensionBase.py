@@ -21,21 +21,6 @@ from PyQt5.QtCore import QObject, pyqtSignal
 
 class ExtensionBase(QObject):
     """
-    Classe de base que toute extension Viclion doit hériter.
-
-    Convention obligatoire dans main.py de l'extension :
-        class Extension(ExtensionBase):
-            ...
-
-    Le manifest.json doit contenir au minimum :
-        {
-            "id":          "mon_extension",
-            "name":        "Mon Extension",
-            "version":     "1.0.0",
-            "description": "Ce que fait l'extension",
-            "author":      "Ton nom",
-            "autoEnable": true
-        }
     """
 
     def __init__(self, manifest: dict, api):

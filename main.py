@@ -30,12 +30,12 @@ from source.managers.WebSearchManager import WebSearchController
 
 
 if __name__ == "__main__":
-    os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-service-worker"
+    os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-service-worker" # <- this is important for visiting web site DO NOT MODIFY IT
 
     scheme = QtWebEngineCore.QWebEngineUrlScheme(AppData.APP_URL_SCHEME_NAME_BYTES)
     
     scheme.setSyntax(QtWebEngineCore.QWebEngineUrlScheme.Syntax.HostAndPort)
-    scheme.setDefaultPort(AppData.app_url_scheme_default_port)
+    scheme.setDefaultPort(AppData.appUrlSchemeDefaultPort)
 
     scheme.setFlags(
         QtWebEngineCore.QWebEngineUrlScheme.Flag.SecureScheme |
@@ -56,6 +56,10 @@ if __name__ == "__main__":
     app.setApplicationVersion(AppData.APP_VERSION)
 
     engineRootContext = engine.rootContext()
+
+    engineRootContext.setContextProperty("appIconPath", AppData.APP_ICON_PATH)
+    engineRootContext.setContextProperty("browserPageWebEngineViewBaseUrl", AppData.webEngineViewBaseUrl)
+
     engineRootContext.setContextProperty("backend", backend)
     engineRootContext.setContextProperty("tabController", backend.tabController)
     engineRootContext.setContextProperty("themeController", backend.themeController)
@@ -74,8 +78,6 @@ if __name__ == "__main__":
 
     if not engine.rootObjects():
         sys.exit(-1)
-
-    backend.createTab()
 
     app.aboutToQuit.connect(engine.deleteLater)
 

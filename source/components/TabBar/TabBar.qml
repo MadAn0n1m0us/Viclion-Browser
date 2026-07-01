@@ -82,7 +82,7 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
             onClicked: {
-                backend.createTab()
+                tabController.createTab(appIconPath, "tab", stackLayout.browserPage)
             }
         }
     }

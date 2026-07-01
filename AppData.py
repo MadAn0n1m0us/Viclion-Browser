@@ -25,7 +25,7 @@ PROJECT_FOLDER = os.path.join(os.path.dirname(__file__)).replace("\\", "/")
 ARGV = sys.argv
 
 APP_NAME = "Viclion Browser"
-APP_ICON = "../../favicon.ico"
+APP_ICON_PATH = "../../favicon.ico"
 APP_VERSION = "Beta v1.0.0"
 
 PROFILES_DATA_FOLDER = f"{PROJECT_FOLDER}/profiles"
@@ -45,9 +45,9 @@ APP_URL_SCHEME_NAME = "viclion"
 APP_URL_SCHEME_NAME_BYTES = APP_URL_SCHEME_NAME.encode()
 APP_URL_SCHEME = f"{APP_URL_SCHEME_NAME}://"
 
-app_url_scheme_default_port = 1515
+appUrlSchemeDefaultPort = 1515
 
-currentWebEngineViewUrl = "viclion://home/index"
+webEngineViewBaseUrl = "https://www.google.com/" # "viclion://home/index"
 
 currentWebEngineUrl = "https://www.google.com/"
 currentWebEngineSearchUrl = f"{currentWebEngineUrl}search?q="

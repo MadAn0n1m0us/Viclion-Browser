@@ -89,7 +89,7 @@ FramelessWindow {
                             WebEngineView {
                                 id: browserPageWebEngineView
 
-                                url: webEngineViewUrl
+                                url: browserPageWebEngineViewBaseUrl
 
                                 webChannel: browserPageWebChannel
                                 devToolsView: browserPageWebEngineViewDevTools
@@ -100,6 +100,15 @@ FramelessWindow {
                             WebEngineView {
                                 id: browserPageWebEngineViewDevTools
                                 visible: false
+                            }
+
+                            Connections {
+                                target: browserPageWebEngineView
+
+                                function onLoadingChanged(webEngineLoadingInfo) {
+                                    tabController.setTabIconPath(index, browserPageWebEngineView.icon)
+                                    tabController.setTabTitle(index, browserPageWebEngineView.title)
+                                }
                             }
                         }
                     }

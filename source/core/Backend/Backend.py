@@ -80,10 +80,6 @@ class Backend(QtCore.QObject):
         if themeName.lower() != "System":
             self.themeController.setCurrentTheme(themeName)
 
-    @QtCore.pyqtSlot()
-    def createTab(self):
-        self.tabController.createTab(AppData.APP_ICON, "tab", AppData.currentWebEngineViewUrl)
-
     @QtCore.pyqtSlot(str)
     def setWebEngineViewUrl(self, url: str):
         if url.startswith(f"{AppData.APP_URL_SCHEME_NAME}://"):

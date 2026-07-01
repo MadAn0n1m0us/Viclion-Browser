@@ -48,9 +48,9 @@ class TabController(QtCore.QObject):
     def tabCount(self):
         return self.model.tabCount
 
-    @QtCore.pyqtSlot(str, str, str)
-    def createTab(self, icon, title, url):
-        self.model.createTab(icon, title, url)
+    @QtCore.pyqtSlot(str, str, QtCore.QObject)
+    def createTab(self, icon, title, widget):
+        self.model.createTab(icon, title, widget)
         self.tabCreated.emit()
 
     @QtCore.pyqtSlot(int)
@@ -71,5 +71,10 @@ class TabController(QtCore.QObject):
         self.model.setCurrentIndex(index)
         self.currentIndexChanged.emit(index)
 
-    def setWebEngineViewUrl(self, url: str):
-        self.model.setWebEngineViewUrl(url)
+    @QtCore.pyqtSlot(int, str)
+    def setTabIconPath(self, index: int, iconPath: str):
+        self.model.setTabIconPath(index, iconPath)
+
+    @QtCore.pyqtSlot(int, str)
+    def setTabTitle(self, index: int, title: str):
+        self.model.setTabTitle(index, title)

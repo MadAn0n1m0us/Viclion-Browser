@@ -25,7 +25,7 @@ class TabModel(QtCore.QAbstractListModel):
     tabIconPathRole = QtCore.Qt.UserRole + 1
     tabTitleRole = QtCore.Qt.UserRole + 2
     tabAcitveRole = QtCore.Qt.UserRole + 3
-    tabUrlRole = QtCore.Qt.UserRole + 4
+    tabWidgetRole = QtCore.Qt.UserRole + 4
 
     tabCountChanged = QtCore.pyqtSignal(int)
     
@@ -55,8 +55,8 @@ class TabModel(QtCore.QAbstractListModel):
             return tab["title"]
         if role == self.tabAcitveRole:
             return tab["active"]
-        if role == self.tabUrlRole:
-            return tab["webEngineViewUrl"]
+        if role == self.tabWidgetRole:
+            return tab["tabWidget"]
         return None
 
     def roleNames(self):
@@ -64,17 +64,17 @@ class TabModel(QtCore.QAbstractListModel):
             self.tabIconPathRole: b"iconPath",
             self.tabTitleRole: b"title",
             self.tabAcitveRole: b"active",
-            self.tabUrlRole: b"webEngineViewUrl"
+            self.tabWidgetRole: b"tabWidget"
         }
         
-    def createTab(self, iconPath: str, title: str, url: str):
+    def createTab(self, iconPath: str, title: str, widget: QtCore.QObject):
         self.beginInsertRows(QtCore.QModelIndex(), len(self._tabs), len(self._tabs))
 
         self._tabs.append({
             "iconPath": iconPath,
             "title": title,
             "active": True,
-            "webEngineViewUrl": url
+            "tabWidget": widget
         })
 
         self.endInsertRows()
@@ -121,15 +121,17 @@ class TabModel(QtCore.QAbstractListModel):
         if 0 <= index < len(self._tabs):
             self.__currentIndex = index
 
-    def setWebEngineViewUrl(self, url: str):
-        if self.__currentIndex < 0:
-            return
-        self._tabs[self.__currentIndex]["webEngineViewUrl"] = url
+    def setTabIconPath(self, index: int, iconPath: str):
+        if 0 <= index < len(self._tabs):
+            self._tabs[self.__currentIndex]["iconPath"] = iconPath
 
-        index = self.index(self.__currentIndex)
+            _index = self.index(index)
+            self.dataChanged.emit(_index, _index, [self.tabIconPathRole]) 
 
-        self.dataChanged.emit(
-            index,
-            index,
-            [self.tabUrlRole]
-        )
+    def setTabTitle(self, index: int, title: str):
+        if 0 <= index < len(self._tabs):
+            self._tabs[self.__currentIndex]["title"] = title
+
+            _index = self.index(index)    
+            self.dataChanged.emit(_index, _index, [self.tabTitleRole]) 
+
