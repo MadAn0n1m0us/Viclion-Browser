@@ -84,6 +84,7 @@ Rectangle {
 
             sourceSize.width: 18
             sourceSize.height: 18
+
         }
 
         Item {
@@ -97,6 +98,8 @@ Rectangle {
 
             font.pointSize: 12
             color: themeController.getCurrentTheme.qss.global.fontColor
+
+            elide: Text.ElideRight
 
             Layout.alignment: Qt.AlignLeft 
         }

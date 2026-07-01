@@ -3,7 +3,7 @@ import QtQuick 2.15
 import QtWebEngine 1.9
 
 
-CustomWebEngineView {
+WebEngineView {
     settings.webGLEnabled: false
     settings.showScrollBars: false
     settings.autoLoadImages: true
@@ -26,9 +26,15 @@ CustomWebEngineView {
     backgroundColor: themeController.getCurrentTheme.qss.webEngineView.backgroundColor
 
     onNavigationRequested: function(navigationRequest) {
-        if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation & 
-            ! WebEngineNavigationRequest.ReloadNavigation) {
-            tabController.createTab("", "tab", navigationRequest.url.toString())
+        if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation & ! WebEngineNavigationRequest.ReloadNavigation) {
+            var navRequestWebEngineView = WebEngineView
+            navRequestWebEngineView.url = navigationRequest.url
+
+            tabController.createTab(
+                navRequestWebEngineView.icon,
+                navRequestWebEngineView.title,
+                navRequestWebEngineView
+            )
         }
     }
 

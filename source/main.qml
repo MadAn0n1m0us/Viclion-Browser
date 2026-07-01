@@ -89,7 +89,7 @@ FramelessWindow {
                             CustomWebEngineView {
                                 id: browserPageCustomWebEngineView
 
-                                url: browserPageCustomWebEngineViewBaseUrl
+                                url: browserPageWebEngineViewBaseUrl
 
                                 webChannel: browserPageWebChannel
                                 devToolsView: browserPageCustomWebEngineViewDevTools

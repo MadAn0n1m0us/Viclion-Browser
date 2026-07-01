@@ -246,14 +246,14 @@ Rectangle {
 
             switch (webEngineLoadingInfo.status) {
 
-                case CustomWebEngineView.LoadStartedStatus:
+                case WebEngineView.LoadStartedStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/close_icon.svg"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.stop()
                     }
                     break
 
-                case CustomWebEngineView.LoadSucceededStatus:
+                case WebEngineView.LoadSucceededStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.reload()
@@ -266,7 +266,7 @@ Rectangle {
                     )
                     break
 
-                case CustomWebEngineView.LoadFailedStatus:
+                case WebEngineView.LoadFailedStatus:
                     leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.reload()
