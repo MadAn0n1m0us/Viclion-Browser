@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 
 class HistoryModel(QtCore.QAbstractListModel):
-    TitleRole = QtCore.Qt.UserRole + 1
-    UrlRole = QtCore.Qt.UserRole + 2
-    DateRole = QtCore.Qt.UserRole + 3
+    TitleRole = QtCore.Qt.ItemDataRole.UserRole + 1
+    UrlRole = QtCore.Qt.ItemDataRole.UserRole + 2
+    DateRole = QtCore.Qt.ItemDataRole.UserRole + 3
 
     def __init__(self, parent=None):
         self._parent = parent

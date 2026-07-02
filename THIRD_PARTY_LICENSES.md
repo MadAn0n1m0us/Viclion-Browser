@@ -2,7 +2,7 @@
 
 This project uses the following libraries.
 
-## PyQt5
+## PyQt6
 
 License:
 GPL / Commercial

@@ -18,7 +18,7 @@
 
 import AppData
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 from .TabModel import TabModel
 
@@ -48,33 +48,46 @@ class TabController(QtCore.QObject):
     def tabCount(self):
         return self.model.tabCount
 
-    @QtCore.pyqtSlot(str, str, QtCore.QObject)
-    def createTab(self, icon, title, widget):
-        self.model.createTab(icon, title, widget)
+    @QtCore.pyqtSlot(str, str, str)
+    def createTab(self, icon, title, url):
+        self.model.createTab(icon, title, url)
         self.tabCreated.emit()
 
     @QtCore.pyqtSlot(int)
-    def closeTab(self, index):
+    def closeTab(self, index: int):
         self.model.closeTab(index)
         self.tabClosed.emit(index)
 
     @QtCore.pyqtSlot(int, int)
-    def moveTab(self, from_, to):
+    def moveTab(self, from_: int, to: int):
         self.model.moveTab(from_, to)
 
     @QtCore.pyqtProperty(int, notify=currentIndexChanged)
     def getCurrentIndex(self):
         return self.model.getCurrentIndex()
-
+    
     @QtCore.pyqtSlot(int)
-    def setCurrentIndex(self, index):
+    def setCurrentIndex(self, index: int):
         self.model.setCurrentIndex(index)
         self.currentIndexChanged.emit(index)
 
+    def getTabIconPath(self, index: int):
+        return self.model.getTabIconPath(index)
+    
     @QtCore.pyqtSlot(int, str)
     def setTabIconPath(self, index: int, iconPath: str):
         self.model.setTabIconPath(index, iconPath)
 
+    def getTabTitle(self, index: int):
+        return self.model.getTabTitle(index)
+    
     @QtCore.pyqtSlot(int, str)
     def setTabTitle(self, index: int, title: str):
         self.model.setTabTitle(index, title)
+        
+    def getTabUrl(self, index: int):
+        return self.model.getTabUrl(index)
+
+    @QtCore.pyqtSlot(int, str)
+    def setTabUrl(self, index: int, url: str):
+        self.model.setTabUrl(index, url)

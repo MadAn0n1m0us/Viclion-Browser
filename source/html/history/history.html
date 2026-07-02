@@ -41,8 +41,8 @@
                     `;
 
                     div.onclick = function() {
-                        if (backend && backend.setWebEngineViewUrl) {
-                            backend.setWebEngineViewUrl(item.url);
+                        if (backend && backend.setCurrentWebEngineViewUrl) {
+                            backend.setCurrentWebEngineViewUrl(item.url);
                         }
                     };
 

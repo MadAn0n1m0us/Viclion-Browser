@@ -16,12 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+# j'ai une envie avec mon code: le thème que le ThemeController envoie vient de fichier json mais je veux que cela soit pris d'un fichier qml 
+
 import os
 import sys
 
 import AppData
 
-from PyQt5 import QtQml, QtGui, QtWebEngine, QtWebEngineCore
+from PyQt6 import QtQml, QtGui, QtWebEngineCore, QtWebEngineQuick
 
 from source.core.FramelessWindowManager import FramelessWindowController
 from source.core.Backend import Backend
@@ -45,7 +47,7 @@ if __name__ == "__main__":
 
     QtWebEngineCore.QWebEngineUrlScheme.registerScheme(scheme)
 
-    QtWebEngine.QtWebEngine.initialize()
+    QtWebEngineQuick.QtWebEngineQuick.initialize()
 
     app = QtGui.QGuiApplication(AppData.ARGV)
     engine = QtQml.QQmlApplicationEngine()

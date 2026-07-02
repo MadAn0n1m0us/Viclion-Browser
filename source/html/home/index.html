@@ -43,7 +43,7 @@
                 div.onclick = function() { 
                     input.value = text;
                     box.style.display = "none";
-                    backend.setWebEngineViewUrl(text)
+                    backend.setCurrentWebEngineViewUrl(text)
                 };
 
                 box.appendChild(div);
@@ -101,7 +101,7 @@
                             return;
 
                         box.style.display = "none";
-                        backend.setWebEngineViewUrl(text);
+                        backend.setCurrentWebEngineViewUrl(text);
                     });
                 }
             );

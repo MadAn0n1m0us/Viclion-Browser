@@ -22,7 +22,7 @@ import shutil
 
 import AppData
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 
 class ProfileModel(QtCore.QAbstractListModel):

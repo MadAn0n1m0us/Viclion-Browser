@@ -1,8 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import QtWebChannel 1.0
+import QtWebEngine
+import QtWebChannel
 
 import NavBar 1.0
 import CustomWebEngineView 1.0
@@ -12,6 +13,8 @@ import WebSearchManager 1.0
 
 Rectangle {
     id: browserPage
+
+    property string browserPageUrl
 
     WebSearchController {
         id: addressBarWebSearchController
@@ -51,7 +54,7 @@ Rectangle {
             CustomWebEngineView {
                 id: browserPageCustomWebEngineView
 
-                url: browserPageWebEngineViewBaseUrl
+                url: browserPageUrl
 
                 webChannel: browserPageWebChannel
                 devToolsView: browserPageCustomWebEngineViewDevTools
@@ -59,7 +62,7 @@ Rectangle {
                 SplitView.fillWidth: true
             }
 
-            CustomWebEngineView {
+            WebEngineView {
                 id: browserPageCustomWebEngineViewDevTools
                 visible: false
             }
@@ -70,8 +73,10 @@ Rectangle {
         target: browserPageCustomWebEngineView
 
         function onLoadingChanged(webEngineLoadingInfo) {
-            tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
-            tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
+            if (webEngineLoadingInfo.status === WebEngineView.LoadSucceededStatus) {
+                tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
+                tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
+            }
         }
     }
 }

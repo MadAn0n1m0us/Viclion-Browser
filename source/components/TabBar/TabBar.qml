@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import utils 1.0
 import TabButton 1.0
@@ -68,7 +68,7 @@ Rectangle {
 
             radius: themeController.getCurrentTheme.qss.addTabButton.radius
 
-            buttonImage.source: "./assets/add_tab_icon.png"
+            buttonImage.source: "../../assets/add_tab_icon.png"
 
             buttonImage.width: 20
             buttonImage.height: 20
@@ -82,7 +82,7 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
             onClicked: {
-                tabController.createTab(appIconPath, "tab", stackLayout.browserPage)
+                tabController.createTab(appIconPath, "tab", browserPageWebEngineViewBaseUrl)
             }
         }
     }

@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Effects
 
 Popup {
     id: popup
@@ -9,23 +9,32 @@ Popup {
 
     background: Item {
 
-        DropShadow {
+        Rectangle {
+            id: backgroundRect
+
+            anchors.fill: parent
+
+            radius: themeController.getCurrentTheme.qss.popup.radius
+            color: themeController.getCurrentTheme.qss.popup.backgroundColor
+
+            visible: false
+        }
+
+        MultiEffect {
             anchors.fill: backgroundRect
 
             source: backgroundRect
 
-            horizontalOffset: 0
-            verticalOffset: 4
+            shadowEnabled: true
+            shadowBlur: 0.8
+            shadowOpacity: 0.5
+            shadowVerticalOffset: 4
+            shadowHorizontalOffset: 0
 
-            radius: 12
-            samples: 25
-
-            color: "#80000000"
+            shadowColor: "#80000000"
         }
 
         Rectangle {
-            id: backgroundRect
-
             anchors.fill: parent
 
             radius: themeController.getCurrentTheme.qss.popup.radius

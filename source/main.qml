@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import FramelessWindow 1.0
 import TitleBar 1.0
@@ -40,6 +40,10 @@ FramelessWindow {
                 model: tabController.getModel
 
                 delegate: BrowserPage {
+                    id: browserPage
+
+                    browserPageUrl: url
+
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                 }

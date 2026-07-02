@@ -18,7 +18,7 @@
 
 import AppData
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 from .WebSearchModel import WebSearchModel
 from .WebSearchThread import WebSearchThread

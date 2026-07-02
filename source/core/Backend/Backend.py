@@ -18,7 +18,7 @@
 
 import AppData
 
-from PyQt5 import QtCore, QtWebEngineWidgets
+from PyQt6 import QtCore, QtWebEngineCore
 
 from source.managers.TabManager import TabController
 from source.managers.ThemeManager import ThemeController
@@ -36,9 +36,10 @@ class Backend(QtCore.QObject):
         self.urlSchemeController = UrlSchemeController.UrlSchemeController(self)
         self.profileController = ProfileController.ProfileController(self)
 
+        self.profileController.createProfile("default")
         self.profileController.setCurrentProfile("default")
 
-        self.currentWebEngineProfile = QtWebEngineWidgets.QWebEngineProfile.defaultProfile()
+        self.currentWebEngineProfile = QtWebEngineCore.QWebEngineProfile.defaultProfile()
 
         self.extensionController = ExtensionController.ExtensionController(api=self)
         self.themeController = ThemeController.ThemeController(self)
@@ -81,18 +82,23 @@ class Backend(QtCore.QObject):
             self.themeController.setCurrentTheme(themeName)
 
     @QtCore.pyqtSlot(str)
-    def setWebEngineViewUrl(self, url: str):
+    def setCurrentWebEngineViewUrl(self, url: str):
         if url.startswith(f"{AppData.APP_URL_SCHEME_NAME}://"):
             finalUrl = url
+
         elif url.startswith("http://") or url.startswith("https://"):
             finalUrl = url
+
         elif "." in url:
             finalUrl = "https://" + url
+
         else:
             finalUrl = AppData.currentWebEngineSearchUrl + url
 
         finalUrl = finalUrl.replace(" ", "+")
-        self.tabController.setWebEngineViewUrl(finalUrl)
+
+        currentIndex = self.tabController.getCurrentIndex
+        self.tabController.setTabUrl(currentIndex, finalUrl)
 
     @QtCore.pyqtSlot(result=str)
     def getDownloadPath(self):

@@ -16,15 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 
 class DownloadModel(QtCore.QAbstractListModel):
-    FileNameRole = QtCore.Qt.UserRole + 1
-    PathRole = QtCore.Qt.UserRole + 2
-    StateRole = QtCore.Qt.UserRole + 3
-    ReceivedBytesRole = QtCore.Qt.UserRole + 5
-    TotalBytesRole = QtCore.Qt.UserRole + 4
+    FileNameRole = QtCore.Qt.ItemDataRole.UserRole + 1
+    PathRole = QtCore.Qt.ItemDataRole.UserRole + 2
+    StateRole = QtCore.Qt.ItemDataRole.UserRole + 3
+    ReceivedBytesRole = QtCore.Qt.ItemDataRole.UserRole + 5
+    TotalBytesRole = QtCore.Qt.ItemDataRole.UserRole + 4
 
     def __init__(self, parent=None):
         self._parent = parent

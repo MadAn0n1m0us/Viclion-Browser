@@ -20,7 +20,7 @@ Python 3.14+
 
 QML 2.15+
 
-PyQt5
+PyQt6
 
 ## Commit Messages
 

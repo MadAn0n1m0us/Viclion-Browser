@@ -20,7 +20,7 @@ import ctypes
 
 from ctypes import wintypes
 
-from PyQt5 import QtCore, QtQuick
+from PyQt6 import QtCore, QtQuick
 
 WM_GETMINMAXINFO = 0x0024
 WM_NCCALCSIZE = 0x0083

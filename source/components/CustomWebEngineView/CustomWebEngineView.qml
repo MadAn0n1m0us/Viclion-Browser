@@ -1,6 +1,6 @@
-import QtQuick 2.15
+import QtQuick
 
-import QtWebEngine 1.9
+import QtWebEngine
 
 
 WebEngineView {
@@ -25,22 +25,15 @@ WebEngineView {
 
     backgroundColor: themeController.getCurrentTheme.qss.webEngineView.backgroundColor
 
-    // onNavigationRequested: function(navigationRequest) {
-    //     if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation) {
-    //         var component = Qt.createComponent("CustomWebEngineView.qml")
-    //         if (component.status === Component.Ready) {
-    //             var navRequestWebEngineView = component.createObject(parent)
-    //             navRequestWebEngineView.url = navigationRequest.url
-    //             tabController.createTab("", "", navRequestWebEngineView)
-    //         }
-    //     }
-    //     navigationRequest.action = WebEngineNavigationRequest.AcceptRequest
-    // }
+    onNavigationRequested: function(navigationRequest) {
+        navigationRequest.action = WebEngineNavigationRequest.AcceptRequest
 
-    onRenderProcessTerminated: function(status, exitCode) {
-        console.log("Render process terminated")
-        console.log("Status:", status)
-        console.log("Exit code:", exitCode)
+        if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation &&
+            navigationRequest.navigationType !== WebEngineNavigationRequest.ReloadNavigation &&
+            navigationRequest.navigationType === WebEngineNavigationRequest.OtherNavigation) {
+                
+            tabController.createTab("", "", navigationRequest.url)
+        }
     }
 
     Connections {

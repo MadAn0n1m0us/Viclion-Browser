@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Effects
 
 import utils 1.0
 
@@ -87,21 +87,21 @@ Rectangle {
 
         }
 
-        Item {
-            width: 4
-        }
-
-        Label {
+        Text {
             id: tabButtonLabel
+
+            clip: true
+            elide: Text.ElideRight
 
             text: tabButtonText
 
             font.pointSize: 12
             color: themeController.getCurrentTheme.qss.global.fontColor
 
-            elide: Text.ElideRight
+            Layout.fillWidth: true
 
-            Layout.alignment: Qt.AlignLeft 
+            Layout.alignment: Qt.AlignLeft
+            verticalAlignment: Text.AlignVCenter
         }
 
         Item {
@@ -114,7 +114,7 @@ Rectangle {
             width: 20
             height: 20
 
-            buttonImage.source: "./assets/close_tab_icon.svg"
+            buttonImage.source: "../../assets/close_tab_icon.svg"
 
             buttonImage.width: 12
             buttonImage.height: buttonImage.width

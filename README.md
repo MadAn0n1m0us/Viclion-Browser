@@ -10,4 +10,4 @@ Free Software Foundation, either version 3 of the License, or
 See the LICENSE file for more details.
 
 # Viclion-Browser
-un navigateur web complet avec PyQt5 et QML
+un navigateur web complet avec PyQt6 et QML

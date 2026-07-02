@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Window
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import utils 1.0
 
@@ -16,10 +16,10 @@ Rectangle {
     function updateMaximizeOrRestoreButtonIcon(state) {
         if (state === 0) {
             maximizeOrRestoreButton.buttonImage.source =
-                "./assets/maximize_window_icon.png"
+                "../../assets/maximize_window_icon.png"
         } else if (state === 2) {
             maximizeOrRestoreButton.buttonImage.source =
-                "./assets/restore_window_icon.png"
+                "../../assets/restore_window_icon.png"
         }
     }
 
@@ -36,7 +36,7 @@ Rectangle {
             width: 48
             height: 40
 
-            buttonImage.source: "./assets/close_window_icon.png"
+            buttonImage.source: "../../assets/close_window_icon.png"
 
             buttonImage.width: 16
             buttonImage.height: 16
@@ -80,7 +80,7 @@ Rectangle {
             width: 48
             height: 40
 
-            buttonImage.source: "./assets/minimize_window_icon.png"
+            buttonImage.source: "../../assets/minimize_window_icon.png"
 
             buttonImage.width: 18
             buttonImage.height: 13

@@ -1,9 +1,9 @@
 import sys
 import os
-from PyQt5.QtCore import QObject, pyqtSlot, QUrl
-from PyQt5.QtGui import QGuiApplication
-from PyQt5.QtQml import QQmlApplicationEngine
-from PyQt5.QtWebEngine import QtWebEngine 
+from PyQt6.QtCore import QObject, pyqtSlot, QUrl
+from PyQt6.QtGui import QGuiApplication
+from PyQt6.QtQml import QQmlApplicationEngine
+from PyQt6.QtWebEngine import QtWebEngine 
 
 class Monbackend(QObject):
     def __init__(self):

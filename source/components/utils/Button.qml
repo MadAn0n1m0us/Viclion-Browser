@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Effects
 
 Rectangle {
     id: button
@@ -56,13 +56,15 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
             }
 
-            ColorOverlay {
-                width: buttonImage.width
-                height: buttonImage.height
-                
+            MultiEffect {
+                anchors.fill: buttonImage
+
                 source: buttonImage
-                color: buttonImageColor
-                visible: buttonImage.visible
+
+                colorization: 1.0
+                colorizationColor: buttonImageColor
+
+                visible: buttonImage.source !== ""
             }
         }
 
@@ -70,10 +72,6 @@ Rectangle {
             id: buttonText
             visible: text != ""
             Layout.alignment: buttonImage.visible ? Qt.AlignVCenter | Qt.AlignLeft: Qt.AlignCenter
-        }
-
-        Item {
-            Layout.fillWidth: buttonImage.visible && buttonText.visible ? true: false
         }
     }
 

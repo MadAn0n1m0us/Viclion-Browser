@@ -16,11 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 
 class WebSearchModel(QtCore.QAbstractListModel):
-    TextRole = QtCore.Qt.UserRole + 1
+    TextRole = QtCore.Qt.ItemDataRole.UserRole + 1
 
     def __init__(self, parent=None):
         self._parent = parent

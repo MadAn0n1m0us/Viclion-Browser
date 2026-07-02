@@ -1,9 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Effects
 
-import QtWebEngine 1.9
+import QtWebEngine
 
 import utils 1.0
 import AddressBar 1.0
@@ -128,7 +128,7 @@ Rectangle {
 
             property var backButton: createNavButton({
                 "layout": leftSideNavBarLayout,
-                "iconSource": "./assets/back_icon.png",
+                "iconSource": "../../assets/back_icon.png",
                 "func": function() {
                     browserPageCustomWebEngineView.goBack()
                 }
@@ -136,7 +136,7 @@ Rectangle {
 
             property var forwardButton: createNavButton({
                 "layout": leftSideNavBarLayout,
-                "iconSource": "./assets/forward_icon.png",
+                "iconSource": "../../assets/forward_icon.png",
                 "func": function() {
                     browserPageCustomWebEngineView.goForward()
                 }
@@ -152,7 +152,7 @@ Rectangle {
 
             property var homeButton: createNavButton({
                 "layout": leftSideNavBarLayout,
-                "iconSource": "./assets/home_icon.png",
+                "iconSource": "../../assets/home_icon.png",
                 "func": function() {
                     console.log("hello world")
                 }
@@ -175,7 +175,7 @@ Rectangle {
                 }
 
                 onAccepted: {
-                    backend.setCustomWebEngineViewUrl(addressBar.text)
+                    backend.setCurrentWebEngineViewUrl(addressBar.text)
                     addressBar.isFocus = false
                     suggestionBoxPopup.close()
                 }
@@ -183,7 +183,7 @@ Rectangle {
 
             property var starButton: createNavButton({
                 "layout": centerSideNavBarLayout,
-                "iconSource": "./assets/empty_star_icon.png",
+                "iconSource": "../../assets/empty_star_icon.png",
                 "func": function() {
                     console.log("hello world")
                 }
@@ -198,7 +198,7 @@ Rectangle {
 
             property var downloadButton: createNavButton({
                 "layout": rightSideNavBarLayout,
-                "iconSource": "./assets/download_icon.png",
+                "iconSource": "../../assets/download_icon.png",
                 "func": function() {
                     downloadPopup.open()
                 }
@@ -206,7 +206,7 @@ Rectangle {
 
             property var userButton: createNavButton({
                 "layout": rightSideNavBarLayout,
-                "iconSource": "./assets/user_icon.png",
+                "iconSource": "../../assets/user_icon.png",
                 "func": function() {
                     console.log("hello world")
                 }
@@ -214,7 +214,7 @@ Rectangle {
 
             property var extensionButton: createNavButton({
                 "layout": rightSideNavBarLayout,
-                "iconSource": "./assets/extension_icon.png",
+                "iconSource": "../../assets/extension_icon.png",
                 "func": function() {
                     console.log("hello world")
                 }
@@ -222,7 +222,7 @@ Rectangle {
 
             property var menuButton: createNavButton({
                 "layout": rightSideNavBarLayout,
-                "iconSource": "./assets/menu_icon.png",
+                "iconSource": "../../assets/menu_icon.png",
                 "func": function() {
                     menuPopup.open()
                 }
@@ -247,14 +247,14 @@ Rectangle {
             switch (webEngineLoadingInfo.status) {
 
                 case WebEngineView.LoadStartedStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "./assets/close_icon.svg"
+                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/close_icon.svg"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.stop()
                     }
                     break
 
                 case WebEngineView.LoadSucceededStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
+                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.reload()
                     }
@@ -267,7 +267,7 @@ Rectangle {
                     break
 
                 case WebEngineView.LoadFailedStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "./assets/reload_icon.png"
+                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
                     leftSideNavBarLayout.reloadButton.func = function() {
                         browserPageCustomWebEngineView.reload()
                     }
@@ -345,7 +345,7 @@ Rectangle {
                 }
 
                 onClicked: {
-                    backend.setCustomWebEngineViewUrl(model.text)
+                    backend.setCurrentWebEngineViewUrl(model.text)
                     addressBar.isFocus = false
                     suggestionBoxPopup.close()
                 }
@@ -492,7 +492,7 @@ Rectangle {
 
             property var addTabButton: navBar.createMenuButton({
                 "layout": menuPopupLayout,
-                "iconSource": "./assets/new_tab_icon.png",
+                "iconSource": "../../assets/new_tab_icon.png",
                 "text": "Add Tab",
                 "func": function() {
                     backend.createTab()
@@ -501,7 +501,7 @@ Rectangle {
 
             property var anonymousButton: navBar.createMenuButton({
                 "layout": menuPopupLayout,
-                "iconSource": "./assets/anonymous_icon.png",
+                "iconSource": "../../assets/anonymous_icon.png",
                 "text": "set in anonymous mode",
                 "func": function() {
                     browserPageCustomWebEngineView.profile.offTheRecord = true
@@ -511,25 +511,25 @@ Rectangle {
 
             property var historyButton: navBar.createMenuButton({
                 "layout": menuPopupLayout,
-                "iconSource": "./assets/history_icon.png",
+                "iconSource": "../../assets/history_icon.png",
                 "text": "history",
                 "func": function() {
-                    backend.setCustomWebEngineViewUrl("viclion://history/history/")
+                    backend.setCurrentWebEngineViewUrl("viclion://history/history/")
                 }  
             })
 
             property var settingsButton: navBar.createMenuButton({
                 "layout": menuPopupLayout,
-                "iconSource": "./assets/settings_icon.png",
+                "iconSource": "../../assets/settings_icon.png",
                 "text": "Settings",
                 "func": function() {
-                    backend.setCustomWebEngineViewUrl("viclion://settings/general/")
+                    backend.setCurrentWebEngineViewUrl("viclion://settings/general/")
                 }  
             })
 
             property var quitButton: navBar.createMenuButton({
                 "layout": menuPopupLayout,
-                "iconSource": "./assets/quit_icon.png",
+                "iconSource": "../../assets/quit_icon.png",
                 "text": "Quit",
                 "func": function() {
                     Qt.quit()

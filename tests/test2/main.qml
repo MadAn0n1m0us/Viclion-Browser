@@ -1,7 +1,8 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtWebEngine 1.10
-import QtWebChannel 1.0
+import QtQuick
+import QtQuick.Controls
+
+import QtWebEngine 
+import QtWebChannel
 
 ApplicationWindow {
     visible: true

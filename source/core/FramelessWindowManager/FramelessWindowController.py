@@ -17,11 +17,11 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import ctypes
-import win32api
-import win32con
-import win32gui
+import win32api as win32api
+import win32con as win32con
+import win32gui as win32gui
 
-from PyQt5 import QtGui, QtCore, QtQuick
+from PyQt6 import QtGui, QtCore, QtQuick
 
 from .FramelessWindowModel import (
     user32,
