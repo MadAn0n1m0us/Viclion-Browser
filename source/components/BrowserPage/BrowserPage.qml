@@ -73,10 +73,46 @@ Rectangle {
         target: browserPageCustomWebEngineView
 
         function onLoadingChanged(webEngineLoadingInfo) {
-            if (webEngineLoadingInfo.status === WebEngineView.LoadSucceededStatus) {
-                tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
-                tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
+            tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
+            tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
+
+            browserPageNavBar.leftSideNavBarLayout.backButton.enabled = browserPageCustomWebEngineView.canGoBack
+            browserPageNavBar.leftSideNavBarLayout.forwardButton.enabled = browserPageCustomWebEngineView.canGoForward
+        
+            switch (webEngineLoadingInfo.status) {
+
+                case WebEngineView.LoadStartedStatus:
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/close_icon.svg"
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        browserPageCustomWebEngineView.stop()
+                    }
+                    break
+
+                case WebEngineView.LoadSucceededStatus:
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        browserPageCustomWebEngineView.reload()
+                    }
+
+                    historyController.addToTheHistory(
+                        browserPageCustomWebEngineView.title,
+                        browserPageCustomWebEngineView.url.toString(),
+                        new Date().toISOString()
+                    )
+                    break
+
+                case WebEngineView.LoadFailedStatus:
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
+                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        browserPageCustomWebEngineView.reload()
+                    }
+                    break
+
             }
+        }
+
+        function onUrlChanged() {            
+            browserPageNavBar.addressBar.cursorPosition = 0
         }
     }
 }

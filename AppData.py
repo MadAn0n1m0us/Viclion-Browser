@@ -25,7 +25,7 @@ PROJECT_FOLDER = os.path.join(os.path.dirname(__file__)).replace("\\", "/")
 ARGV = sys.argv
 
 APP_NAME = "Viclion Browser"
-APP_ICON_PATH = "../../favicon.ico"
+APP_ICON_PATH = "../../assets/favicon.ico"
 APP_VERSION = "Beta v1.0.0"
 
 PROFILES_DATA_FOLDER = f"{PROJECT_FOLDER}/profiles"

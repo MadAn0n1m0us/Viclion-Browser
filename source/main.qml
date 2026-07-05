@@ -14,6 +14,7 @@ FramelessWindow {
     ColumnLayout {            
         anchors.fill: parent
         anchors.margins: 1
+
         spacing: 0
 
         TitleBar {
@@ -25,6 +26,7 @@ FramelessWindow {
             TabBar {
                 id: tabBar 
                 Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter
             }
         }
 

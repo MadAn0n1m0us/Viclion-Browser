@@ -92,7 +92,7 @@ class TabModel(QtCore.QAbstractListModel):
 
             self.endRemoveRows()
 
-            self.tabCountChanged.emit(index)
+            self.tabCountChanged.emit(self.rowCount())
 
             if self.__currentIndex >= len(self._tabs):
                 self.__currentIndex = len(self._tabs) - 1

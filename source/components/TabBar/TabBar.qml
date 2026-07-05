@@ -20,7 +20,6 @@ Rectangle {
 
         anchors.fill: parent
         anchors.leftMargin: 4
-        
         spacing: 4
 
         ListView {

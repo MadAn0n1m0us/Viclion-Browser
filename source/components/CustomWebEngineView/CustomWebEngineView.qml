@@ -26,7 +26,7 @@ WebEngineView {
     backgroundColor: themeController.getCurrentTheme.qss.webEngineView.backgroundColor
 
     onNavigationRequested: function(navigationRequest) {
-        navigationRequest.action = WebEngineNavigationRequest.AcceptRequest
+        navigationRequest.accept()
 
         if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation &&
             navigationRequest.navigationType !== WebEngineNavigationRequest.ReloadNavigation &&

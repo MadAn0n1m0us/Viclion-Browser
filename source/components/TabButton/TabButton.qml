@@ -24,7 +24,7 @@ Rectangle {
 
     default property alias tabButton: tabButtonLayout.data
 
-    width: 180
+    width: 200
     height: 32
 
     opacity: isCurrent
@@ -63,8 +63,6 @@ Rectangle {
         }
     }
 
-    anchors.verticalCenter: parent.verticalCenter
-
     RowLayout {
         id: tabButtonLayout
 
@@ -84,7 +82,6 @@ Rectangle {
 
             sourceSize.width: 18
             sourceSize.height: 18
-
         }
 
         Text {

@@ -6,7 +6,6 @@ import QtQuick.Effects
 import QtWebEngine
 
 import utils 1.0
-import AddressBar 1.0
 
 
 Rectangle {
@@ -165,20 +164,48 @@ Rectangle {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
 
-            AddressBar {
-                id: addressBar
-                text: browserPageCustomWebEngineView.url.toString()
+            Rectangle {
+                height: 32
+
+                color: themeController.getCurrentTheme.qss.addressBar.backgroundColor
+                
                 Layout.fillWidth: true
 
-                onTextChanged: {
-                    debounceTimer.restart()
-                }
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.margins: 4
 
-                onAccepted: {
-                    backend.setCurrentWebEngineViewUrl(addressBar.text)
-                    addressBar.isFocus = false
-                    suggestionBoxPopup.close()
-                }
+                    spacing: 0
+
+                    TextInput {
+                        id: addressBar
+
+                        text: browserPageCustomWebEngineView.url.toString()
+
+                        font.pointSize: themeController.getCurrentTheme.qss.global.fontSize
+                        color: themeController.getCurrentTheme.qss.global.fontColor
+
+                        verticalAlignment: TextEdit.AlignVCenter
+
+                        clip: true
+                        focus: true
+                        selectByMouse: true
+                        wrapMode: TextEdit.NoWrap 
+
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+
+                        onTextChanged: {
+                            debounceTimer.restart()
+                        }
+
+                        onAccepted: {
+                            backend.setCurrentWebEngineViewUrl(addressBar.text)
+                            suggestionBoxPopup.close()
+                        }
+                    }
+                }                
             }
 
             property var starButton: createNavButton({
@@ -235,50 +262,7 @@ Rectangle {
         rightSideNavBarLayout.downloadButton.visible = false
     }
       
-    /* -------------------- CONNECTIONS -------------------- */
-
-    Connections {
-        target: browserPageCustomWebEngineView
-
-        function onLoadingChanged(webEngineLoadingInfo) {
-            leftSideNavBarLayout.backButton.enabled = browserPageCustomWebEngineView.canGoBack
-            leftSideNavBarLayout.forwardButton.enabled = browserPageCustomWebEngineView.canGoForward
-
-            switch (webEngineLoadingInfo.status) {
-
-                case WebEngineView.LoadStartedStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/close_icon.svg"
-                    leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.stop()
-                    }
-                    break
-
-                case WebEngineView.LoadSucceededStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
-                    leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.reload()
-                    }
-
-                    historyController.addToTheHistory(
-                        browserPageCustomWebEngineView.title,
-                        browserPageCustomWebEngineView.url.toString(),
-                        new Date().toISOString()
-                    )
-                    break
-
-                case WebEngineView.LoadFailedStatus:
-                    leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
-                    leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.reload()
-                    }
-                    break
-            }
-        }
-
-        function onUrlChanged() {            
-            addressBar.cursorPosition = 0
-        }
-    }
+    /* -------------------- CONNECTIONS -------------------- *
 
     Connections {
         target: downloadController
@@ -487,7 +471,6 @@ Rectangle {
             
             anchors.fill: parent
             anchors.margins: 0
-
             spacing: 0
 
             property var addTabButton: navBar.createMenuButton({

@@ -42,7 +42,9 @@ Rectangle {
         id: buttonLayout
 
         anchors.fill: parent
-        anchors.margins: buttonText.visible && buttonImage.visible ? 10: 0
+        anchors.margins: buttonText.visible && buttonImage.visible ? 4: 0
+        
+        spacing: 0
 
         Item {
             width: buttonImage.width
@@ -52,7 +54,7 @@ Rectangle {
 
             Image {
                 id: buttonImage
-                visible: source != ""
+                visible: false
                 fillMode: Image.PreserveAspectFit
             }
 
@@ -60,11 +62,11 @@ Rectangle {
                 anchors.fill: buttonImage
 
                 source: buttonImage
-
+                
                 colorization: 1.0
                 colorizationColor: buttonImageColor
 
-                visible: buttonImage.source !== ""
+                visible: buttonImage.source !== false
             }
         }
 

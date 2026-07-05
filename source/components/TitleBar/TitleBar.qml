@@ -98,7 +98,9 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        updateMaximizeOrRestoreButtonIcon(framelessWindowController.getWindowState())
+        updateMaximizeOrRestoreButtonIcon(
+            framelessWindowController.getWindowState()
+        )
     }
 
     Connections {
