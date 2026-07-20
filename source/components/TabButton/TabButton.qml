@@ -70,7 +70,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.margins: 4
 
-        spacing: 0
+        spacing: 4
 
         Image {
             id: image
@@ -80,8 +80,7 @@ Rectangle {
             width: 18
             height: 18
 
-            sourceSize.width: 18
-            sourceSize.height: 18
+            sourceSize: Qt.size(width, height)
         }
 
         Text {
@@ -92,7 +91,7 @@ Rectangle {
 
             text: tabButtonText
 
-            font.pointSize: 12
+            font.pointSize: 10
             color: themeController.getCurrentTheme.qss.global.fontColor
 
             Layout.fillWidth: true

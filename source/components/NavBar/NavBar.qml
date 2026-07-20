@@ -11,11 +11,15 @@ import utils 1.0
 Rectangle {
     id: navBar
 
+    property alias leftSideNavBarLayout: leftSideNavBarLayout
+    property alias centerSideNavBarLayout: centerSideNavBarLayout
+    property alias rightSideNavBarLayout: rightSideNavBarLayout
+    
+    property alias addressBar: addressBar
+
     height: 40
 
     color: themeController.getCurrentTheme.qss.navBar.backgroundColor
-    
-    default property alias navBar: navBarLayout.data
 
     Component {
         id: navButtonComponent
@@ -129,7 +133,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "../../assets/back_icon.png",
                 "func": function() {
-                    browserPageCustomWebEngineView.goBack()
+                    webEngineView.goBack()
                 }
             })
 
@@ -137,7 +141,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "../../assets/forward_icon.png",
                 "func": function() {
-                    browserPageCustomWebEngineView.goForward()
+                    webEngineView.goForward()
                 }
             })
 
@@ -145,7 +149,7 @@ Rectangle {
                 "layout": leftSideNavBarLayout,
                 "iconSource": "",
                 "func": function() {
-                    browserPageCustomWebEngineView.reload()
+                    webEngineView.reload()
                 }
             })
 
@@ -181,7 +185,7 @@ Rectangle {
                     TextInput {
                         id: addressBar
 
-                        text: browserPageCustomWebEngineView.url.toString()
+                        text: webEngineView.url.toString()
 
                         font.pointSize: themeController.getCurrentTheme.qss.global.fontSize
                         color: themeController.getCurrentTheme.qss.global.fontColor
@@ -195,10 +199,6 @@ Rectangle {
 
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
-
-                        onTextChanged: {
-                            debounceTimer.restart()
-                        }
 
                         onAccepted: {
                             backend.setCurrentWebEngineViewUrl(addressBar.text)
@@ -272,22 +272,6 @@ Rectangle {
         }
     }
 
-    Timer {
-        id: debounceTimer
-
-        interval: 300
-        repeat: false
-
-        onTriggered: {
-            if(addressBar.text.length != 0 && addressBar.isFocus) {
-                addressBarWebSearchController.search(addressBar.text)
-                suggestionBoxPopup.open()
-            } else if(suggestionBoxPopupList.count === 0){
-                suggestionBoxPopup.close()
-            }
-        }
-    }
-
     /* -------------------- POPUPS -------------------- */
 
     CustomPopup {
@@ -341,7 +325,7 @@ Rectangle {
         id: downloadPopup
 
         width: 360
-        height: browserPageCustomWebEngineView.height
+        height: webEngineView.height
 
         x: rightSideNavBarLayout.x - downloadPopup.width + rightSideNavBarLayout.downloadButton.width + navBarLayout.anchors.margins
         y: navBar.height
@@ -487,8 +471,8 @@ Rectangle {
                 "iconSource": "../../assets/anonymous_icon.png",
                 "text": "set in anonymous mode",
                 "func": function() {
-                    browserPageCustomWebEngineView.profile.offTheRecord = true
-                    browserPageCustomWebEngineView.reload()
+                    webEngineView.profile.offTheRecord = true
+                    webEngineView.reload()
                 }  
             })
 

@@ -25,14 +25,9 @@ WebEngineView {
 
     backgroundColor: themeController.getCurrentTheme.qss.webEngineView.backgroundColor
 
-    onNavigationRequested: function(navigationRequest) {
-        navigationRequest.accept()
-
-        if (navigationRequest.navigationType === WebEngineNavigationRequest.RedirectNavigation &&
-            navigationRequest.navigationType !== WebEngineNavigationRequest.ReloadNavigation &&
-            navigationRequest.navigationType === WebEngineNavigationRequest.OtherNavigation) {
-                
-            tabController.createTab("", "", navigationRequest.url)
+    onNewWindowRequested: function(newWindowRequest) {
+        if (newWindowRequest.destination !== WebEngineNewWindowRequest.InNewTab || WebEngineNewWindowRequest.InNewBackgroundTab) {
+            tabController.createTab("", "tab", newWindowRequest.requestedUrl)
         }
     }
 

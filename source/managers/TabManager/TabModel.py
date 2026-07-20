@@ -24,7 +24,7 @@ from PyQt6 import QtCore
 class TabModel(QtCore.QAbstractListModel):
     tabIconPathRole = QtCore.Qt.ItemDataRole.UserRole + 1
     tabTitleRole = QtCore.Qt.ItemDataRole.UserRole + 2
-    tabAcitveRole = QtCore.Qt.ItemDataRole.UserRole + 3
+    tabActiveRole = QtCore.Qt.ItemDataRole.UserRole + 3
     tabUrlRole = QtCore.Qt.ItemDataRole.UserRole + 4
 
     tabCountChanged = QtCore.pyqtSignal(int)
@@ -53,7 +53,7 @@ class TabModel(QtCore.QAbstractListModel):
             return tab["iconPath"]
         if role == self.tabTitleRole:
             return tab["title"]
-        if role == self.tabAcitveRole:
+        if role == self.tabActiveRole:
             return tab["active"]
         if role == self.tabUrlRole:
             return tab["url"]
@@ -63,7 +63,7 @@ class TabModel(QtCore.QAbstractListModel):
         return {
             self.tabIconPathRole: b"iconPath",
             self.tabTitleRole: b"title",
-            self.tabAcitveRole: b"active",
+            self.tabActiveRole: b"active",
             self.tabUrlRole: b"url"
         }
         
@@ -85,6 +85,10 @@ class TabModel(QtCore.QAbstractListModel):
             self.__currentIndex = len(self._tabs) - 1
 
     def closeTab(self, index: int):
+        print("Avant suppression")
+        print("Nombre d'onglets :", len(self._tabs))
+        print("Current index :", self.__currentIndex)
+        
         if 0 <= index < len(self._tabs):
             self.beginRemoveRows(QtCore.QModelIndex(), index, index)
 
@@ -96,6 +100,11 @@ class TabModel(QtCore.QAbstractListModel):
 
             if self.__currentIndex >= len(self._tabs):
                 self.__currentIndex = len(self._tabs) - 1
+
+        print("Après suppression")
+        print("Nombre d'onglets :", len(self._tabs))
+        print("Current index :", self.__currentIndex)
+
 
     def moveTab(self, from_: int, to: int):
         if from_ == to:
@@ -111,6 +120,13 @@ class TabModel(QtCore.QAbstractListModel):
 
         tab = self._tabs.pop(from_)
         self._tabs.insert(to, tab)
+
+        if self.__currentIndex == from_:
+            self.__currentIndex = to
+        elif from_ < self.__currentIndex <= to:
+            self.__currentIndex -= 1
+        elif to <= self.__currentIndex < from_:
+            self.__currentIndex += 1
 
         self.endMoveRows()
 

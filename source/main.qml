@@ -7,9 +7,15 @@ import TitleBar 1.0
 import TabBar 1.0
 import BrowserPage 1.0
 
+import FramelessWindowManager 1.0
+
 
 FramelessWindow {
     id: mainWindow
+
+    FramelessWindowController {
+        id: framelessWindowController
+    }
 
     ColumnLayout {            
         anchors.fill: parent
@@ -26,7 +32,7 @@ FramelessWindow {
             TabBar {
                 id: tabBar 
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignVCenter
+                // Layout.alignment: Qt.AlignVCenter
             }
         }
 

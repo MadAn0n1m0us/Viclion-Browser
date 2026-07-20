@@ -85,8 +85,9 @@ class FramelessWindowController(QtCore.QObject):
     framelessWindowSizeChanged = QtCore.pyqtSignal(bool)
     framelessWindowStateChanged = QtCore.pyqtSignal(QtCore.Qt.WindowState)
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        self._parent = parent
+        super().__init__(self._parent)
 
         self.model = FramelessWindowModel()
         self.__event_filter = FramelessNativeEventFilter(self)
@@ -178,10 +179,6 @@ class FramelessWindowController(QtCore.QObject):
     @QtCore.pyqtSlot('QVariant', 'QVariant', 'QVariant', 'QVariant')
     def addToExcludedDragRectList(self, x, y, w, h):
         self.model.addToExcludedDragRectList(x, y, w, h)
-
-    @QtCore.pyqtSlot()
-    def clearExcludedDragRectList(self):
-        self.model.clearExcludedDragRectList()
 
     def pointInExcludedRegions(self, x, y):
         return any(rect.contains(x, y) for rect in self.getExcludedDragRectList())

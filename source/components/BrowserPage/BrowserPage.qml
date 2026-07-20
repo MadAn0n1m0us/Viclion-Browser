@@ -16,6 +16,8 @@ Rectangle {
 
     property string browserPageUrl
 
+    property alias browserPage: browserPageLayout.data
+
     WebSearchController {
         id: addressBarWebSearchController
     }
@@ -39,7 +41,7 @@ Rectangle {
         spacing: 0
 
         NavBar {
-            id: browserPageNavBar
+            id: navBar
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
@@ -52,59 +54,67 @@ Rectangle {
             Layout.fillHeight: true
 
             CustomWebEngineView {
-                id: browserPageCustomWebEngineView
+                id: webEngineView
 
                 url: browserPageUrl
 
                 webChannel: browserPageWebChannel
-                devToolsView: browserPageCustomWebEngineViewDevTools
+                devToolsView: webEngineViewDevTools
 
                 SplitView.fillWidth: true
             }
 
             WebEngineView {
-                id: browserPageCustomWebEngineViewDevTools
+                id: webEngineViewDevTools
                 visible: false
             }
         }
     }
     
     Connections {
-        target: browserPageCustomWebEngineView
+        target: webEngineView
 
         function onLoadingChanged(webEngineLoadingInfo) {
-            tabController.setTabIconPath(index, browserPageCustomWebEngineView.icon)
-            tabController.setTabTitle(index, browserPageCustomWebEngineView.title)
+            tabController.setTabTitle(index, webEngineView.title)
 
-            browserPageNavBar.leftSideNavBarLayout.backButton.enabled = browserPageCustomWebEngineView.canGoBack
-            browserPageNavBar.leftSideNavBarLayout.forwardButton.enabled = browserPageCustomWebEngineView.canGoForward
+            navBar.leftSideNavBarLayout.backButton.enabled = webEngineView.canGoBack
+            navBar.leftSideNavBarLayout.forwardButton.enabled = webEngineView.canGoForward
         
             switch (webEngineLoadingInfo.status) {
 
                 case WebEngineView.LoadStartedStatus:
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/close_icon.svg"
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.stop()
+                    tabController.setTabIconPath(index, webEngineView.icon != "" ? webEngineView.icon : appIconPath)
+        
+                    navBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/close_icon.svg"
+                    navBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        webEngineView.stop()
+                    }
+                    break
+
+                case WebEngineView.LoadStoppedStatus:        
+                    navBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
+                    navBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        webEngineView.reload()
                     }
                     break
 
                 case WebEngineView.LoadSucceededStatus:
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.reload()
+                    navBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
+                    navBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        webEngineView.reload()
                     }
 
                     historyController.addToTheHistory(
-                        browserPageCustomWebEngineView.title,
-                        browserPageCustomWebEngineView.url.toString(),
+                        webEngineView.title,
+                        webEngineView.url.toString(),
                         new Date().toISOString()
                     )
                     break
 
                 case WebEngineView.LoadFailedStatus:
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
-                    browserPageNavBar.leftSideNavBarLayout.reloadButton.func = function() {
-                        browserPageCustomWebEngineView.reload()
+                    navBar.leftSideNavBarLayout.reloadButton.iconSource = "../../assets/reload_icon.png"
+                    navBar.leftSideNavBarLayout.reloadButton.func = function() {
+                        webEngineView.reload()
                     }
                     break
 
@@ -112,7 +122,7 @@ Rectangle {
         }
 
         function onUrlChanged() {            
-            browserPageNavBar.addressBar.cursorPosition = 0
+            navBar.addressBar.cursorPosition = 0
         }
     }
 }

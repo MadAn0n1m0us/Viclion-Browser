@@ -13,10 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License                visible: source != ""
+# You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-# j'ai une envie avec mon code: le thème que le ThemeController envoie vient de fichier json mais je veux que cela soit pris d'un fichier qml 
 
 import os
 import sys
@@ -51,7 +49,6 @@ if __name__ == "__main__":
 
     app = QtGui.QGuiApplication(AppData.ARGV)
     engine = QtQml.QQmlApplicationEngine()
-    framelessWindowController = FramelessWindowController.FramelessWindowController()
     backend = Backend.Backend()
 
     app.setApplicationName(AppData.APP_NAME)
@@ -68,7 +65,11 @@ if __name__ == "__main__":
     engineRootContext.setContextProperty("historyController", backend.historyController)
     engineRootContext.setContextProperty("profileController", backend.profileController)
     engineRootContext.setContextProperty("downloadController", backend.downloadController)
-    engineRootContext.setContextProperty("framelessWindowController", framelessWindowController)
+
+    QtQml.qmlRegisterType(
+        FramelessWindowController.FramelessWindowController, 
+        "FramelessWindowManager", 1, 0, "FramelessWindowController"
+    )
 
     QtQml.qmlRegisterType(
         WebSearchController.WebSearchController, 
