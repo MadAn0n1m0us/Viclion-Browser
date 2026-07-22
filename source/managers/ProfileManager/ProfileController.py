@@ -56,6 +56,8 @@ class ProfileController(QtCore.QObject):
         persistentStoragePath = f"{AppData.PROFILES_DATA_FOLDER}/{profileName}"
         extensionsStoragePath = f"{persistentStoragePath}/extensions"
         cachePath = f"{persistentStoragePath}/cache"
+
+        currentLanguageName = "English"
         currentThemeName = "Light Theme"
 
         pathlib.Path(extensionsStoragePath).mkdir(parents=True, exist_ok=True)
@@ -64,6 +66,7 @@ class ProfileController(QtCore.QObject):
             "profileName": profileName,
             "persistentStoragePath": persistentStoragePath,
             "currentThemeName": currentThemeName,
+            "currentLanguageName": currentLanguageName,
             "cachePath": cachePath,
             "downloadPath": AppData.downloadDir
         }
