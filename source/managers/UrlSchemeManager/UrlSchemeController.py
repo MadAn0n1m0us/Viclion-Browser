@@ -43,7 +43,7 @@ class UrlSchemeController(QtWebEngineCore.QWebEngineUrlSchemeHandler):
 
         buffer = QtCore.QBuffer()
         buffer.setData(data)
-        buffer.open(QtCore.QIODevice.ReadOnly)
+        buffer.open(QtCore.QIODevice.OpenModeFlag.ReadOnly)
 
         self.buffers.append(buffer)
 

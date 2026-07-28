@@ -21,7 +21,7 @@ import AppData
 from PyQt6 import QtCore
 
 from .WebSearchModel import WebSearchModel
-from .WebSearchThread import WebSearchThread
+from .WebSearcher import WebSearcher
 
 
 class WebSearchController(QtCore.QObject):
@@ -35,12 +35,12 @@ class WebSearchController(QtCore.QObject):
         self._model = WebSearchModel()
         
         self._thread = QtCore.QThread()
-        self.webSearchThread = WebSearchThread()
+        self.webSearcher = WebSearcher()
 
-        self.webSearchThread.moveToThread(self._thread)
+        self.webSearcher.moveToThread(self._thread)
 
-        self.searchRequested.connect(self.webSearchThread.search)
-        self.webSearchThread.resultsReady.connect(self.setSuggestions)
+        self.searchRequested.connect(self.webSearcher.search)
+        self.webSearcher.resultsReady.connect(self.setSuggestions)
 
         self._thread.start()
 

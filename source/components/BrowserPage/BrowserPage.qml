@@ -6,6 +6,7 @@ import QtWebEngine
 import QtWebChannel
 
 import NavBar 1.0
+import BookmarkBar 1.0
 import CustomWebEngineView 1.0
 
 import WebSearchManager 1.0
@@ -18,20 +19,15 @@ Rectangle {
 
     property alias browserPage: browserPageLayout.data
 
-    WebSearchController {
-        id: addressBarWebSearchController
-    }
-
-    WebSearchController {
-        id: webSearchController
-    }
+// WebSearchController {
+//     id: addressBarWebSearchController
+// }
 
     WebChannel {
         id: browserPageWebChannel
 
         Component.onCompleted: {
             browserPageWebChannel.registerObject("backend", backend)
-            browserPageWebChannel.registerObject("webSearchController", webSearchController)
         }
     }
 
@@ -45,6 +41,11 @@ Rectangle {
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
+        }
+
+        BookmarkBar {
+            id: bookmarkBar
+            Layout.fillWidth: true
         }
 
         SplitView {
@@ -117,7 +118,6 @@ Rectangle {
                         webEngineView.reload()
                     }
                     break
-
             }
         }
 

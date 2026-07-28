@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+from operator import index
+
 import AppData
 
 from PyQt6 import QtCore
@@ -85,15 +87,9 @@ class TabModel(QtCore.QAbstractListModel):
             self.__currentIndex = len(self._tabs) - 1
 
     def closeTab(self, index: int):
-        print("Avant suppression")
-        print("Nombre d'onglets :", len(self._tabs))
-        print("Current index :", self.__currentIndex)
-        
         if 0 <= index < len(self._tabs):
             self.beginRemoveRows(QtCore.QModelIndex(), index, index)
-
             self._tabs.pop(index)
-
             self.endRemoveRows()
 
             self.tabCountChanged.emit(self.rowCount())
@@ -101,21 +97,13 @@ class TabModel(QtCore.QAbstractListModel):
             if self.__currentIndex >= len(self._tabs):
                 self.__currentIndex = len(self._tabs) - 1
 
-        print("Après suppression")
-        print("Nombre d'onglets :", len(self._tabs))
-        print("Current index :", self.__currentIndex)
-
-
     def moveTab(self, from_: int, to: int):
         if from_ == to:
             return
 
         self.beginMoveRows(
-            QtCore.QModelIndex(),
-            from_,
-            from_,
-            QtCore.QModelIndex(),
-            to + (1 if to > from_ else 0)
+            QtCore.QModelIndex(),from_, from_,
+            QtCore.QModelIndex(), to + (1 if to > from_ else 0)
         )
 
         tab = self._tabs.pop(from_)

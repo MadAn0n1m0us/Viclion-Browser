@@ -21,7 +21,7 @@ import sys
 
 import AppData
 
-from PyQt6 import QtQml, QtGui, QtWebEngineCore, QtWebEngineQuick
+from PyQt6 import QtGui, QtQml, QtWebEngineCore, QtWebEngineQuick
 
 from source.core.FramelessWindowManager import FramelessWindowController
 from source.core.Backend import Backend
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     if not engine.rootObjects():
         sys.exit(-1)
-
+        
     app.aboutToQuit.connect(engine.deleteLater)
 
     sys.exit(app.exec())

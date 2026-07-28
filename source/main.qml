@@ -32,7 +32,7 @@ FramelessWindow {
             TabBar {
                 id: tabBar 
                 Layout.fillWidth: true
-                // Layout.alignment: Qt.AlignVCenter
+                Layout.alignment: Qt.AlignVCenter
             }
         }
 
@@ -49,11 +49,7 @@ FramelessWindow {
 
                 delegate: BrowserPage {
                     id: browserPage
-
                     browserPageUrl: url
-
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
                 }
             }
         }

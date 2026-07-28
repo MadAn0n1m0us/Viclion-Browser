@@ -22,7 +22,7 @@ import requests
 from PyQt6 import QtCore
 
 
-class WebSearchThread(QtCore.QObject):
+class WebSearcher(QtCore.QObject):
     resultsReady = QtCore.pyqtSignal(list)
             
     def __init__(self, parent=None):

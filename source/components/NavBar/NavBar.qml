@@ -292,7 +292,7 @@ Rectangle {
             interactive: false
             orientation: ListView.Vertical
 
-            model: addressBarWebSearchController.model
+//            model: addressBarWebSearchController.model
 
             delegate: Button {
                 id: suggestionBoxPopupListButton
@@ -462,7 +462,7 @@ Rectangle {
                 "iconSource": "../../assets/new_tab_icon.png",
                 "text": "Add Tab",
                 "func": function() {
-                    backend.createTab()
+                    tabController.createTab(appIconPath, "tab", browserPageWebEngineViewBaseUrl)
                 }  
             })
 
