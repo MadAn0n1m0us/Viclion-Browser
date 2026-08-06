@@ -5,7 +5,6 @@ import QtWebEngine
 
 WebEngineView {
     settings.webGLEnabled: false
-    settings.showScrollBars: false
     settings.autoLoadImages: true
     settings.pluginsEnabled: false
     settings.errorPageEnabled: true

@@ -19,10 +19,6 @@ Rectangle {
 
     property alias browserPage: browserPageLayout.data
 
-// WebSearchController {
-//     id: addressBarWebSearchController
-// }
-
     WebChannel {
         id: browserPageWebChannel
 

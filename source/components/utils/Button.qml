@@ -38,19 +38,20 @@ Rectangle {
 
     default property alias button: buttonLayout.data
 
-    RowLayout {
+    Row {
         id: buttonLayout
 
-        anchors.fill: parent
-        anchors.margins: buttonText.visible && buttonImage.visible ? 4: 0
+        anchors.horizontalCenter: buttonImage.source && buttonText.visible ? undefined : parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+        anchors.left: buttonImage.source && buttonText.visible ? parent.left : undefined
+        anchors.leftMargin: buttonImage.source && buttonText.visible ? 4: 0
         
-        spacing: 0
+        spacing: 4
 
         Item {
             width: buttonImage.width
             height: buttonImage.height
-
-            Layout.alignment: buttonText.visible ? Qt.AlignVCenter | Qt.AlignLeft: Qt.AlignCenter
 
             Image {
                 id: buttonImage
@@ -60,20 +61,19 @@ Rectangle {
 
             MultiEffect {
                 anchors.fill: buttonImage
-
                 source: buttonImage
-                
+
+                colorizationColor: buttonImageColor 
                 colorization: 1.0
-                colorizationColor: buttonImageColor
 
                 visible: buttonImage.source !== false
+                brightness: 1.0
             }
         }
 
         Text {
             id: buttonText
-            visible: text != ""
-            Layout.alignment: buttonImage.visible ? Qt.AlignVCenter | Qt.AlignLeft: Qt.AlignCenter
+            visible: text != false
         }
     }
 
@@ -82,6 +82,7 @@ Rectangle {
     }
 
     TapHandler {
+        id: tapHandler
         onPressedChanged: button.pressed = pressed
         onTapped: {
             button.clicked()

@@ -32,7 +32,7 @@ FramelessWindow {
             TabBar {
                 id: tabBar 
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignVCenter
+                Layout.alignment: Qt.AlignBottom
             }
         }
 
